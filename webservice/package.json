@@ -1,0 +1,22 @@
+{
+  "name": "webservice",
+  "version": "1.0.0",
+  "description": "j14 webservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenkarlab/j14.git"
+  },
+  "keywords": [
+    "j14"
+  ],
+  "author": "Ohad Sasson, Maor Toubian, Eidan Kleinman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shenkarlab/j14/issues"
+  },
+  "homepage": "https://github.com/shenkarlab/j14#readme"
+}
