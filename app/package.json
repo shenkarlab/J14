@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenkarlab/j14.git"
+  },
+  "author": "Ohad Sasson, Eidan Kleinman, Maor Toubian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shenkarlab/j14/issues"
+  },
+  "homepage": "https://github.com/shenkarlab/j14#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {}
+}
