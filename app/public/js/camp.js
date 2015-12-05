@@ -16,7 +16,11 @@ j14App.config(['$routeProvider',
         templateUrl: 'views/partials/map.html',
         controller: 'MapCtrl'
       }).
+      when('/list', {
+        templateUrl: 'views/partials/list.html',
+        controller: 'UsersListCtrl'
+      }).
       otherwise({
-        redirectTo: '/map'
+        redirectTo: '/list'
       });
 	}]);

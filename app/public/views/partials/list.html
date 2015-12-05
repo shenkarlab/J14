@@ -1,0 +1,11 @@
+<div ng-repeat="obj in usersObj">
+   <ul ng-repeat="user in obj.users">
+      <li class="usersList">
+         <div class="row-fluid">
+            <p class="col-xs-3  ">First Name: {{user.userFname}}</p>
+            <p class="col-xs-6 ">Last Name: {{user.userLname}}</p>
+            <p class="col-xs-3 ">Age Name: {{user.age}}</p>
+         </div>
+      </li>
+   </ul>
+</div>

@@ -2,3 +2,7 @@
   height: 800px;
   width: 100%;
 }
+ul
+{
+  list-style-type: none;
+}
