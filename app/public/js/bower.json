@@ -1,0 +1,23 @@
+{
+  "name": "js",
+  "homepage": "https://github.com/shenkarlab/J14",
+  "description": "j14 bower's components",
+  "main": "js",
+  "moduleType": [],
+  "authors": [
+    "Ohad Sasson",
+    "Maor Toubian",
+    "Eidan Kleinman"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs-geolocation": "~0.1.1"
+  }
+}

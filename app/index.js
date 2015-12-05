@@ -3,4 +3,4 @@
 var express = require('express');
 var app = express();
 app.use('/', express.static('./public')).listen(8080);
-console.log("We have connection ! Lift -off 8080");
+console.log("We have connection! 8080");
