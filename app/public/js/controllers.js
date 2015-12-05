@@ -27,6 +27,9 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams' , '$http','geolo
 					$scope.coords = {latitude:result.coords.latitude, longitude:result.coords.longitude};
 					initialize($scope.mapStyle.data, $scope.coords);
 
+
+//the center position should be taken for each location
+
           function initialize(_data, center){
       			var mapCanvas = document.getElementById('map-canvas');
       			var mapOptions = {
@@ -37,9 +40,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams' , '$http','geolo
       			}
       			$scope.map = new google.maps.Map(mapCanvas, mapOptions);
       		}
-
-
-
+					
 				});
 
 			});

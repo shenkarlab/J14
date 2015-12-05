@@ -24,3 +24,15 @@ j14App.config(['$routeProvider',
         redirectTo: '/list'
       });
 	}]);
+
+//Cookie or IdentityService - we need to decide
+  j14App.factory('IdentityService', function(){
+    var IdentityService = {};
+    IdentityService.LoggedInUser = {};
+
+    IdentityService.savedLoginUser = function(user){
+      IdentityService.LoggedInUser = user;
+    }
+
+      return IdentityService;
+  });
