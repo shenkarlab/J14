@@ -1,4 +1,4 @@
-var j14App = angular.module("j14App",['ngRoute','usersControllers']);//first of all we make the module
+var j14App = angular.module("j14App",['ngRoute','usersControllers','geolocation']);//first of all we make the module
 console.log("camp.js");
 
 j14App.config(['$routeProvider',
@@ -10,11 +10,11 @@ j14App.config(['$routeProvider',
       }).
       when('/map/:userId', {
         templateUrl: 'views/partials/single.html',
-        controller: 'UsersListCtrl'
+        controller: 'MapCtrl'
       }).
       when('/map', {
         templateUrl: 'views/partials/map.html',
-        controller: 'UsersListCtrl'
+        controller: 'MapCtrl'
       }).
       otherwise({
         redirectTo: '/map'

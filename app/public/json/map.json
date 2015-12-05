@@ -1,0 +1,12 @@
+[
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#4a3180",
+                "hue":  "#0022ff"
+            }
+        ]
+    }
+]
