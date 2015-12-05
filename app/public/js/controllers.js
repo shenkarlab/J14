@@ -1,20 +1,18 @@
 var usersControllers = angular.module('usersControllers', []);
-/*=============================================USERS CTRL============================================*/
+/*=============================================USERS and GRAPHS CTRL============================================*/
 
-usersControllers.controller('UsersListCtrl', ['$scope', '$http',
-	function ($scope, $http) {
+usersControllers.controller('UsersListCtrl', ['$scope', '$http','$routeParams',
+	function ($scope, $http, $routeParams) {
 		$http.get("http://localhost:3000/get").success(function (data) {
 			$scope.usersObj = data;
-			debugger;
 
 		});
   }
 ]);
-
 /*=============================================MAP CTRL============================================*/
 
-usersControllers.controller('MapCtrl', ['$scope','$routeParams' , '$http','geolocation',
-	function ($scope,$routeParams, $http,geolocation) {
+usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation',
+	function ($scope, $routeParams, $http, geolocation) {
 		$http.get("http://localhost:3000/get").success(function (data) {
 			$scope.mapObjects = data;
 
@@ -40,7 +38,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams' , '$http','geolo
       			}
       			$scope.map = new google.maps.Map(mapCanvas, mapOptions);
       		}
-					
+
 				});
 
 			});
