@@ -1,12 +1,58 @@
 #map-canvas{
   height: 800px;
-  width: 100%;
+  width: 72%;
+  margin: 0;
 }
 ul
 {
   list-style-type: none;
 }
+.view{
+  width: 100%;
+}
 
+/* right menu */
+.right-nav{
+  position: fixed;
+  right: 0;
+  height: 800px;
+  width:28%;
+  background-color: #0d192c;
+  color: #f1b817;
+  margin: 0;
+  padding: 4%;
+}
+.lead-story{
+  font-size: 18px;
+  direction: rtl;
+
+}
+.user-info{
+  border-right: 2px solid #f1b817;
+  font-size: 12px;
+  color: #FFFFFF;
+  direction: rtl;
+  margin-top: 5%;
+  padding-right: 5%;
+  margin-bottom: 25%;
+}
+.protest-story{
+  direction: rtl;
+  color: #FFFFFF;
+  font-size: 12px;
+}
+.protest-icons{
+}
+
+/* Bottom bar info */
+.fixed-bottom{
+  width: 72%;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  background-color: #f3f1f1;
+  height: 200px;
+}
 
 /* Removing Google maps icons */
 .gmnoprint{
