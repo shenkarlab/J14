@@ -1,4 +1,4 @@
-var j14App = angular.module("j14App",['ngRoute','usersControllers','geolocation','nvd3']);//first of all we make the module
+var j14App = angular.module("j14App",['ngRoute','usersControllers','MassAutoComplete','geolocation','nvd3']);//first of all we make the module
 console.log("camp.js");
 
 j14App.config(['$routeProvider',

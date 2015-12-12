@@ -1,6 +1,6 @@
 #map-canvas{
   height: 800px;
-  width: 72%;
+  width: 100%;
   margin: 0;
 }
 ul
@@ -11,17 +11,39 @@ ul
   width: 100%;
 }
 
-/* right menu */
-.right-nav{
+
+#search-bar{
   position: fixed;
-  right: 0;
-  height: 800px;
-  width:28%;
+  width: 10%;
+  left: 5%;
+  top: 3%;
+  z-index: 1;
+}
+
+/* right menu */
+#right-nav{
+  position: fixed;
+  right: 2.5%;
+  height: 67.5%;
+  width:20%;
   background-color: #0d192c;
   color: #f1b817;
   margin: 0;
   padding: 4%;
+  z-index: 1;
 }
+
+.toggle-button{
+  width: 25px;
+  float: right;
+  padding-top: 1%;
+  border: none;
+  background: none;
+}
+.toggle-button:focus{
+      outline:none;
+}
+
 .lead-story{
   font-size: 18px;
   direction: rtl;
@@ -46,12 +68,12 @@ ul
 
 /* Bottom bar info */
 .fixed-bottom{
-  width: 72%;
+  width: 100%;
   margin: 0;
   position: fixed;
   bottom: 0;
   background-color: #f3f1f1;
-  height: 200px;
+  height: 27.57%;
 }
 
 /* Removing Google maps icons */
