@@ -77,10 +77,10 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 								iterator++;
 								var markerImage = new google.maps.MarkerImage(
 								    '../../images/black-circle.png',
-								    new google.maps.Size(8,8), //size
+								    new google.maps.Size(12,12), //size
 								    null, //origin
 								    null, //anchor
-								    new google.maps.Size(8,8) //scale
+								    new google.maps.Size(12,12) //scale
 								);
 
 								var marker = new google.maps.Marker({
@@ -112,13 +112,13 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 							 //when the map zoom changes, resize the icon based on the zoom level so the marker covers the same geographic area
 							 google.maps.event.addListener($scope.map, 'zoom_changed', function() {
-									 var pixelSizeAtZoom0 = 9; //the size of the icon at zoom level 0
-									 var maxPixelSize = 9; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
+									 var pixelSizeAtZoom0 = 13; //the size of the icon at zoom level 0
+									 var maxPixelSize = 13; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
 									 var zoom = $scope.map.getZoom();
-									 var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(1.8,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
+									 var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(3,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
+
 									 if(relativePixelSize > maxPixelSize) //restrict the maximum size of the icon
 											 relativePixelSize = maxPixelSize;
-
 									 //change the size of the icon
 									 marker.setIcon(
 											 new google.maps.MarkerImage(
