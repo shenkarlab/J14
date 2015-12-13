@@ -1,12 +1,110 @@
-[
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#4a3180",
-                "hue":  "#0022ff"
-            }
-        ]
-    }
-]
+
+[{
+	"featureType": "poi",
+	"elementType": "all",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "landscape.man_made",
+	"elementType": "all",
+	"stylers": [{
+		"color": "#f2f0f1"
+	}, {
+		"weight": 0.1
+	}, {
+		"saturation": 0
+	}, {
+		"lightness": 0
+	}]
+}, {
+	"featureType": "road.arterial",
+	"elementType": "geometry.stroke",
+	"stylers": [{
+		"color": "#da5a69"
+	}]
+}, {
+	"featureType": "road.local",
+	"elementType": "geometry.fill",
+	"stylers": [{
+		"color": "#ffb1ba"
+	}, {
+		"weight": 1.06
+	}]
+}, {
+	"featureType": "road.local",
+	"elementType": "geometry.stroke",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "transit",
+	"elementType": "all",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "road.highway",
+	"elementType": "geometry.fill",
+	"stylers": [{
+		"color": "#da5a69"
+	}]
+}, {
+	"featureType": "road.highway",
+	"elementType": "geometry.stroke",
+	"stylers": [{
+		"color": "#000000"
+	}, {
+		"weight": 0.1
+	}]
+}, {
+	"featureType": "road.highway",
+	"elementType": "labels.icon",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "road.arterial",
+	"elementType": "labels.icon",
+	"stylers": [{
+		"visibility": "on"
+	}]
+}, {
+	"featureType": "road.arterial",
+	"elementType": "labels.text.fill",
+	"stylers": [{
+		"color": "#953e48"
+	}]
+}, {
+	"featureType": "road.local",
+	"elementType": "labels.text.fill",
+	"stylers": [{
+		"color": "#a94651"
+	}]
+}, {
+	"featureType": "road.local",
+	"elementType": "labels.text.stroke",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "landscape.natural",
+	"elementType": "all",
+	"stylers": [{
+		"visibility": "on"
+	}, {
+		"color": "#f2f0f1"
+	}]
+}, {
+	"featureType": "administrative.land_parcel",
+	"elementType": "all",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}, {
+	"featureType": "administrative",
+	"elementType": "geometry.fill",
+	"stylers": [{
+		"visibility": "off"
+	}]
+}]

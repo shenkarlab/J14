@@ -13,6 +13,16 @@ usersControllers.controller('UsersListCtrl', ['$scope', '$http','$routeParams',
 
 usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation',
 	function ($scope, $routeParams, $http, geolocation) {
+
+		//gloabal controller vars
+		$scope.markers = [];
+		var tempMarker = {};
+		var mapObjectsStack = [];
+		var mapObjectsCoorStack = [];
+		var iterator = 0;
+		var LeadsInterval;
+		var noLeadClicked = true;
+
 		$http.get("http://localhost:3000/get").success(function (data) {
 			$scope.mapObjects = data;
 			// $scope.camps = [];
@@ -31,7 +41,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 			// 					}
 			// 		});
 		});
-		var tempMarker = {};
+
     $scope.mapData = function (){
 			$http.get('../json/map.json').then(function(data){
 				$scope.mapStyle = data;
@@ -39,42 +49,56 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 					//for curreent location
 					// $scope.coords = {latitude:result.coords.latitude, longitude:result.coords.longitude};
 					//default Rotchild blvd
-					$scope.coords ={latitude:32.0654371,longitude:34.778832};
+					$scope.coords ={latitude:32.0635743,longitude:34.7773985};
 					initialize($scope.mapStyle.data, $scope.coords);
 					mapObjectsCoor($scope.mapObjects);
 
 				});
-
 			});
 		}
 
-					function mapObjectsCoor(data){
-						var mapObjectsStack = [];
-						var mapObjectsCoorStack = [];
+		function mapObjectsCoor(data){
+					  mapObjectsStack = [];
+						mapObjectsCoorStack = [];
+
 						angular.forEach(data, function(usersObj) {
 							angular.forEach(usersObj.users, function(singleUser) {
 								if(angular.isDefined(singleUser.tentCoor)){
-									var objCoor = { latitude: singleUser.tentCoor[0].latitude , longitude: singleUser.tentCoor[0].longitude};
+									var objCoor = { latitude: singleUser.tentCoor[0].latitude ,
+										 							longitude: singleUser.tentCoor[0].longitude};
 									mapObjectsCoorStack.push(objCoor);
 									mapObjectsStack.push(singleUser);
 								}
 							});
 						});
+
 						$scope.mapObjectsCoor = mapObjectsCoorStack;
 						$scope.mapObjectsStack = mapObjectsStack;
+
 						if($scope.mapObjectsStack != null){
 							for (i = 0; i < $scope.mapObjectsCoor.length; i++){
-								createMarker($scope.mapObjectsCoor[i],$scope.mapObjectsStack[i]);
+								 createMarker($scope.mapObjectsCoor[i],$scope.mapObjectsStack[i]);
+							}
+
+							//intervaling between leads until a lead was clicked by the user
+							//--todo-- make the interval stop when user clicked
+							if(noLeadClicked){
+									clearInterval(LeadsInterval);
+									LeadsInterval = setInterval(function(){
+													var i =	Math.floor(Math.random() * ($scope.markers.length + 1));
+													google.maps.event.trigger( $scope.markers[i], 'click' );
+													console.log($scope.markers[i].content);
+									},"5000");
 							}
 						}
-					};
+		};
 
-					$scope.markers = [];
-					var iterator = 0;
-					var createMarker = function (info , obj){
+		var createMarker = function (info , obj){
+
 								var path = '../../images/black-circle.png';
 								$scope.momObj = obj;
 								iterator++;
+
 								var markerImage = new google.maps.MarkerImage(
 								    '../../images/black-circle.png',
 								    new google.maps.Size(12,12), //size
@@ -87,6 +111,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 									map: $scope.map,
 									position: new google.maps.LatLng(info.latitude, info.longitude),
 									info: info,
+									//animation: google.maps.Animation.DROP,
 									content: $scope.momObj,
 									icon: markerImage,
 									id: iterator
@@ -98,6 +123,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 								google.maps.event.addListener(marker, 'click', function(){
 								$scope.rightNavContent(marker.content);
+								noLeadClicked = false;
+								//clearInterval(LeadsInterval);
 								if(typeof tempMarker["id"] === 'undefined'){
 										marker.setIcon("../../images/yellow-circle.png");
 									}
@@ -108,6 +135,19 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 										}
 									}
 									tempMarker = marker;
+							});
+
+							//add info window when hover on maker show user name
+							var infoWindow = new google.maps.InfoWindow({
+								content: marker.content.userFname+" "+marker.content.userLname
+							});
+
+							google.maps.event.addListener(marker,'mouseover',function(){
+									infoWindow.open($scope.map, marker);
+							});
+
+							google.maps.event.addListener(marker,'mouseout',function(){
+									infoWindow.close($scope.map, marker);
 							});
 
 							 //when the map zoom changes, resize the icon based on the zoom level so the marker covers the same geographic area
@@ -130,15 +170,17 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 											 )
 									 );
 							 });
-							}
+		}
 
-							$scope.rightNavContent = function(content){
-								$scope.$apply(function(){
-									$scope.story = content;
-								});
-							}
+		$scope.rightNavContent = function(content){
+			$scope.$apply(function(){
+				$scope.leadStory = content.whatIDid;
+				$scope.userInfo = content.userFname +" "+content.userLname;
+				$scope.protestStory = content.conclusion;
+			});
+		}
 
-          function initialize(_data, center){
+    function initialize(_data, center){
       			var mapCanvas = document.getElementById('map-canvas');
       			var mapOptions = {
       				center: new google.maps.LatLng(center.latitude, center.longitude),
@@ -147,17 +189,17 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
       				styles: _data
       			}
       			$scope.map = new google.maps.Map(mapCanvas, mapOptions);
-      		}
+    }
 
-					$scope.toggle = function() {
+		$scope.toggle = function() {
 						if ($('.toggle-button').hasClass('glyphicon-menu-down')){
 							$('.toggle-button').removeClass('glyphicon-menu-down').addClass('glyphicon-menu-up');
-							$('#graph-nav').animate({bottom:"-24%"});
+							$('#graph-nav').animate({bottom:"-23%"});
 						}
 						else{
 							$('.toggle-button').removeClass('glyphicon-menu-up').addClass('glyphicon-menu-down');
 							$('#graph-nav').animate({bottom:"0%"});
 						}
-					};
+		};
   }
 ]);
