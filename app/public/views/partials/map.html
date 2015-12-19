@@ -3,23 +3,45 @@
                mass-autocomplete-item="autocomplete_options">
       </div> -->
     </div>
-<div id="right-nav">
-  <div class="lead-story">{{leadStory}}</div>
-  <div class="user-info">{{userInfo}}</div>
-  <div class="protest-story">{{protestStory}}</div>
-  <!-- <div class="protest-icons">{{protestIcons}}</div> -->
-</div>
-<div id="map-canvas" data-ng-init="mapData()">
-</div>
-<div class="fixed-bottom" id="graph-nav">
-<button class="glyphicon glyphicon-menu-down toggle-button" ng-click="toggle()"></button>
-<div class="tabbable tabs-right">
-  <ul class="nav nav-tabs">
-    ...
-  </ul>
-  <div class="tab-content">
-    ...
-  </div>
-</div>
+    <div id="right-nav-lead" class="right-nav">
+        <div class="lead-story">{{leadStory}}</div>
+        <div class="user-info">{{userInfo}}</div>
+        <div class="lead-button">המשך קריאה</div>
+    </div>
 
-</div>
+    <div id="right-nav-story" class="right-nav">
+        <div class="protester-image">{{protesterImage}}</div>
+        <div class="share-button"></div>
+        <div class="report-botton"></div>
+        <div class="lead-story">{{leadStory}}</div>
+        <div class="user-info">{{userInfo}}</div>
+        <div class="icons">
+              <div class="icon" id="icon1"></div>
+              <div class="icon" id="icon2"></div>
+              <div class="icon" id="icon3"></div>
+              <div class="icon" id="icon4"></div>
+              <div class="iconDesc" id="icon1Desc"></div>
+              <div class="iconDesc" id="icon2Desc"></div>
+              <div class="iconDesc" id="icon3Desc"></div>
+              <div class="iconDesc" id="icon4Desc"></div>
+        </div>
+        <div class="protest-story">{{protestStory}}</div>
+        <div class="story-button">לסיפור הבא</div>
+    </div>
+
+    <form id="campSelect" action="#" method="get">
+        <input list="camps" name="camp" placeholder="חפש מאהל ברחבי הארץ">
+          <datalist id="camps">
+            <!-- will be load with all the camps -->
+          </datalist>
+    </form>
+
+    <div id="map-canvas" data-ng-init="mapData()"></div>
+
+    <div class="fixed-bottom" id="graph-nav">
+        <button class="glyphicon glyphicon-menu-up toggle-button" ng-click="toggle()"></button>
+        <div id="fixed-bottom-title">השוואות אז והיום</div>
+        <div id="sankeyChart"></div>
+    </div>
+
+  </div>
