@@ -37,6 +37,7 @@ j14App.config(['$routeProvider',
   j14App.factory('IdentityService', function(){
     var IdentityService = {};
     IdentityService.LoggedInUser = {};
+    //implement this
 
     IdentityService.savedLoginUser = function(user){
       IdentityService.LoggedInUser = user;
