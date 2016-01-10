@@ -40,7 +40,7 @@ j14App.config(['$routeProvider',
 
     IdentityService.savedLoginUser = function(user){
       IdentityService.LoggedInUser = user;
-    }
+    };
 
       return IdentityService;
   });

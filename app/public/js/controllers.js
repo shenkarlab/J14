@@ -17,14 +17,38 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 		//gloabal controller vars
 		$scope.markers = [];
+		$scope.userMaster = {};
 		var map;
+		var newMarkerAdded = false;
+		var newMarker;
 		var randomLead ;
 		var tempMarker = {};
 		var mapObjectsStack = [];
 		var mapObjectsCoorStack = [];
 		var iterator = 0;
+		var formPage = 0;
 		var LeadsInterval;
 		var noLeadClicked = true;
+
+		$("#inputFile").change(function () {
+				console.log("uploaded");
+		        readURL(this);
+		});
+
+		function readURL(input) {
+		        if (input.files && input.files[0]) {
+		            var reader = new FileReader();
+
+		            reader.onload = function (e) {
+		            	$('#image_upload_preview').css('backgroundImage','url('+e.target.result+')');
+
+		               // $('#image_upload_preview').css('background-image', e.target.result);
+		            }
+
+	                reader.readAsDataURL(input.files[0]);
+		        }
+		}
+
 
 		$http.get("http://localhost:3000/get").success(function (data) {
 			$scope.mapObjects = data;
@@ -93,7 +117,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 									//intervaling between leadsevery 5 seconds
 									LeadsInterval = setInterval(function(){
 													randomLead =	Math.floor(Math.random() * ($scope.markers.length));
-													console.log($scope.markers[randomLead]);
+													//console.log($scope.markers[randomLead]);
 													$scope.rightNavContentLead($scope.markers[randomLead]);
 									},"5000");
 							}
@@ -174,6 +198,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		$scope.rightNavContentLead = function(marker){
 
 				$scope.$apply(function(){
+					if(angular.isDefined(marker)){
 
 						$scope.leadStory = "\" " + marker.content.whatIDid + " \"";
 						$scope.userInfo =  marker.content.userFname +" "+
@@ -188,6 +213,10 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 								marker.setIcon("../../images/circleSelected.svg");
 						}
 						tempMarker = marker;
+					}
+					else{
+						console.log(" Content is not defined");
+					}
 				});
 		}
 
@@ -257,23 +286,23 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
     }
 
 		//on click on the map a marker for share or add new will added to the map
-		//--todo-- the form and the buttoms beside the maker--//
-		function placeMarker(latLng, map) {
-			var markerImage = new google.maps.MarkerImage(
-					'../../images/circle.svg',
-					new google.maps.Size(13,13), //size
-					null, //origin
-					null, //anchor
-					new google.maps.Size(13,13) //scale
-			);
-			var marker = new google.maps.Marker({
-					position: latLng,
-					animation: google.maps.Animation.DROP, //could be cool option
-					icon: markerImage,
-					id: iterator,
-					map:map
-			});
-		}
+		////--todo-- the form and the buttoms beside the maker--//
+		//function placeMarker(latLng, map) {
+		//	var markerImage = new google.maps.MarkerImage(
+		//			'../../images/circle.svg',
+		//			new google.maps.Size(13,13), //size
+		//			null, //origin
+		//			null, //anchor
+		//			new google.maps.Size(13,13) //scale
+		//	);
+		//	var marker = new google.maps.Marker({
+		//			position: latLng,
+		//			animation: google.maps.Animation.DROP, //could be cool option
+		//			icon: markerImage,
+		//			id: iterator,
+		//			map:map
+		//	});
+		//}
 
 		//toggle the bottom nav div
 		$scope.toggle = function() {
@@ -298,7 +327,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		//click listener to go the next story
 		$(".story-button").click(function() {
 				randomLead =	Math.floor(Math.random() * ($scope.markers.length));
-				console.log(randomLead);
+				//console.log(randomLead);
 				$scope.rightNavContentStory($scope.markers[randomLead]);
 		});
 
@@ -363,7 +392,136 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		});
 
 		//draw chart example from our CDN
-		drawChart();
+		//drawChart();
+
+		//will be called after the user finished filling the form and pack it into jason
+		//--TODO -- upload data to mongo
+		$scope.SendUserData = function(user) {
+	        $scope.userMaster = angular.copy(user);
+	        console.log($scope.userMaster.name);
+	        var name = $scope.userMaster.name;
+
+	        window.alert(name+", תודה על השתתפותך נתונך עברו לאישור עורכי האתר");
+	        closeForm();
+	    };
+
+	    //after filling the form correctly close the form and return to the regular view
+	    function closeForm(){
+				$("#right-nav-form").animate({right: '-1000px'});
+				$("#right-nav-lead").animate({top: '0px'});
+				$("#right-nav-story").animate({top: '0px'});
+				$("#graph-nav").animate({bottom: '-22%'});
+  }
+
+		//on click on the map a marker for share or add new will added to the map
+		//--todo-- the form and the buttoms beside the maker--//
+		function placeMarker(latLng, map) {
+			if(!newMarkerAdded){
+
+				//const version
+				//$("#right-nav-lead").css( "display", "none" );
+				//$("#right-nav-story").css( "display", "none" );
+				//$("#graph-nav").css( "display", "none" );
+				$("#right-nav-form").css( "display", "block" );
+
+				//animated version
+				$("#right-nav-form").animate({right: '0px'});
+				$("#right-nav-lead").animate({top: '-1500px'});
+				$("#right-nav-story").animate({top: '-1500px'});
+				$("#graph-nav").animate({bottom: '-500px'});
+
+				iterator++;
+				var markerImage = new google.maps.MarkerImage(
+						'../../images/pendingCircle.svg',
+						new google.maps.Size(13,13), //size
+						null, //origin
+						null, //anchor
+						new google.maps.Size(13,13) //scale
+				);
+				newMarker = new google.maps.Marker({
+						position: latLng,
+						animation: google.maps.Animation.DROP, //could be cool option
+						icon: markerImage,
+						id: iterator,
+						map:map
+				});
+
+				//add info window when hover on maker show pending status
+				var infoWindow = new google.maps.InfoWindow({
+					content: "תוכן ממתין לאישור"
+				});
+
+				//map.setCenter(new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng()+1));
+				newMarkerAdded = true;
+			}
+		}
+
+	    //form next bottom function --TODO-- add validation to the fields
+		$("#form-next-botton").click(function(){
+			formPage++;
+			$("#form-prev-botton").css( "display", "block" );
+			if(formPage==1){
+				$("#form-first-page").css( "display", "none" );
+				$("#form-second-page").css( "display", "block" );
+			}
+			else if(formPage==2){
+				$("#form-second-page").css( "display", "none" );
+				$("#form-third-page").css( "display", "block" );
+			}
+			else if(formPage==3){
+				$("#form-third-page").css( "display", "none" );
+				$("#form-fourth-page").css( "display", "block" );
+			}
+			else if(formPage==4){
+				$("#form-next-botton").css( "display", "none" );
+				$("#form-send-botton").css( "display", "block" );
+				$("#form-fourth-page").css( "display", "none" );
+				$("#form-fifth-page").css( "display", "block" );
+			}
+		})
+
+		//form prev bottom function
+		$("#form-prev-botton").click(function(){
+			formPage--;
+			if(formPage==0){
+				$("#form-first-page").css( "display", "block" );
+				$("#form-second-page").css( "display", "none" );
+				$("#form-prev-botton").css( "display", "none" );
+			}
+			else if(formPage==1){
+				$("#form-second-page").css( "display", "block" );
+				$("#form-third-page").css( "display", "none" );
+			}
+			else if(formPage==2){
+				$("#form-third-page").css( "display", "block" );
+				$("#form-fourth-page").css( "display", "none" );
+			}
+			else if(formPage==3){
+				$("#form-next-botton").css( "display", "block" );
+				$("#form-send-botton").css( "display", "none" );
+				$("#form-fourth-page").css( "display", "block" );
+				$("#form-fifth-page").css( "display", "none" );
+			}
+		})
+
+		//form close votton function, it the user clicked on it the marker temp marker will be removed
+		$("#close-form").click(function(){
+
+				//animated version
+				$("#right-nav-form").animate({right: '-1000px'});
+				$("#right-nav-lead").animate({top: '0px'});
+				$("#right-nav-story").animate({top: '0px'});
+				$("#graph-nav").animate({bottom: '-22%'});
+
+				//const version
+				// $("#right-nav-form").css( "display", "none" );
+				// $("#right-nav-lead").css( "display", "block" );
+				// $("#right-nav-story").css( "display", "block" );
+				// $("#graph-nav").css( "display", "block" );
+
+				newMarker.setMap(null);
+				newMarkerAdded = false;
+		})
 
   }
 ]);

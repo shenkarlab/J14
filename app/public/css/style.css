@@ -1,11 +1,16 @@
 @font-face {
     font-family: shual;
-    src: url(Shual-Regular.woff);
+    src: url(../fonts/Shual-Regular.woff);
 }
 
 body{
-  overflow-y:hidden;
+  overflow:hidden;
   direction: rtl;
+  font-family: shual;
+}
+
+input{
+  width:50%;
 }
 
 #map-canvas{
@@ -50,6 +55,18 @@ ul{
 #right-nav-story{
   display: none;
   background-color: #0d192c;
+}
+
+#right-nav-form{
+  display: none;
+  background-color: #0d192c;
+  position: fixed;
+  right:-1000px;
+  height: 100%;
+  width: 60%;
+  color: #f1b817;
+  padding: 2%;
+  z-index: 1;
 }
 
 .toggle-button{
@@ -234,4 +251,105 @@ ul{
   z-index: 1;
   top: -210px;
   right: 650px;
+}
+
+#google-signout-button{
+}
+
+
+#user-image{
+    width: 100px;
+    position: absolute;
+    height: 100px;
+    left: 8%;
+    top: 8%;
+    float: left;
+    border-radius: 50px;
+    /*//background-image: ;*/
+}
+
+#close-form{
+    float: left;
+    background: #e1e1e1;
+    width: 40px;
+    color: #000000;
+    left: 0px;
+    font-size: 28px;
+    position: absolute;
+    text-align: center;
+    height: 40px;
+    top: 0px;
+}
+
+.yellow-botton{
+      float: left;
+    background: #f1b817;
+    width: 40px;
+    color: #000000;
+    left:0px;
+    bottom: 0px;
+    position: absolute;
+    font-size: 14px;
+    text-align: center;
+    height: 40px;
+}
+
+#form-send-botton{
+  display: none;
+}
+
+#form-prev-botton{
+    display: none;
+    float: right;
+    background: #f1b817;
+    width: 40px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: #000000;
+    margin: 0px;
+    font-size: 14px;
+    text-align: center;
+    height: 40px;
+}
+
+#google-signout-button:hover,
+#close-form:hover,
+#form-next-botton:hover,
+#form-prev-botton:hover,
+#form-send-botton:hover
+{
+  cursor: pointer;
+}
+
+#form-second-page,
+#form-third-page,
+#form-fourth-page,
+#form-fifth-page{
+  display: none;
+}
+
+.form{
+    margin-right: 32%;
+}
+
+.form h2,.form h3,.form{
+    color: #ffffff;
+}
+
+.form input,.form select{
+  width: 50%;
+  height: 30px;
+  color: #000000;
+}
+
+.form textarea{
+  width: 50%;
+  color: #000000;
+}
+
+#image_upload_preview {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
 }
