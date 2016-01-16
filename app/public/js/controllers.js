@@ -38,12 +38,9 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		function readURL(input) {
 		        if (input.files && input.files[0]) {
 		            var reader = new FileReader();
-
 		            reader.onload = function (e) {
 		            	$('#image_upload_preview').css('backgroundImage','url('+e.target.result+')');
-
-		               // $('#image_upload_preview').css('background-image', e.target.result);
-		            };
+                    };
 
 	                reader.readAsDataURL(input.files[0]);
 		        }
@@ -404,10 +401,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		function placeMarker(latLng,map) {
 			if(!newMarkerAdded){
 
-				//const version
-				//$("#right-nav-lead").css( "display", "none" );
-				//$("#right-nav-story").css( "display", "none" );
-				//$("#graph-nav").css( "display", "none" );
 				$("#right-nav-form").css( "display", "block" );
 
 				//animated version

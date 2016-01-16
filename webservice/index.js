@@ -56,17 +56,14 @@ app.post('/map', function(req,res){
         Obj.tentCoor.longitude,
         function(err, docs){
         if(docs){
-
+            res.status(200);
             return res.send(JSON.stringify(docs));
-			res.status(200);
 		}
 		else{
 			res.status(500).send(err);
 		}
 	});
 });
-
-
 
 
 

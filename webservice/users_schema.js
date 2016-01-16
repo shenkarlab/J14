@@ -3,38 +3,39 @@ var schema = mongoose.Schema;
 
 var usersSchema = new schema({
 
-  campName: {type:String, required:true},
+  campName:{type:String, unique:true},
   centerCoor: [{
-    latitude:{type:Number},
-    longitude:{type:Number}
+    latitude: String,
+    longitude: String
   }],
-  zoom: {type:String},
+  zoom: Number,
   users: [{
-    leadRank: {type:Number},
+    userId:{type:String, unique:true},
+    leadRank: Number,
     adminApproval: Boolean,
     userFname: {type:String, required:true},
     userLname: {type:String, required:true},
-    age: {type:Number},
-    rent11: {type:Number},
-    rent16: {type:Number},
-    status11: {type:String},
-    status16: {type:String},
-    salaryIncreased: {type:String},
-    happy: {type:Boolean},
-    protestSucceed: {type:Boolean},
-    regrets: {type:Boolean},
-    government: {type:Boolean},
-    socialPressure: {type:Boolean},
-    renewProtest: {type:Boolean},
-    tentImageLink: {type:String},
-    userprofileImage: {type:String},
-    conclusion: {type:String},
+    age: String,
+    rent11: String,
+    rent16: String,
+    status11: String,
+    status16: String,
+    salaryIncreased: String,
+    happy: String,
+    protestSucceed: String,
+    regrets: String,
+    government: String,
+    socialPressure: String,
+    renewProtest: String,
+    tentImageLink: String,
+    userprofileImage: String,
+    conclusion: String,
     tentCoor: [{
-      latitude:{type:Number},
-      longitude:{type:Number}
+      latitude:String,
+      longitude:String
     }]
 
   }]
-}, {collection: 'camps'});
+}, {collection: 'campsnames'});
 
 exports.usersSchema = usersSchema;
