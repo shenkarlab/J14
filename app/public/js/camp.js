@@ -29,18 +29,41 @@ j14App.config(['$routeProvider',
         controller: 'UsersListCtrl'
       }).
       otherwise({
-        redirectTo: '/list'
+        redirectTo: '/map'
       });
 	}]);
 
-//Cookie or IdentityService - we need to decide
-  j14App.factory('IdentityService', function(){
-    var IdentityService = {};
-    IdentityService.LoggedInUser = {};
-
-    IdentityService.savedLoginUser = function(user){
-      IdentityService.LoggedInUser = user;
-    };
-
-      return IdentityService;
-  });
+j14App.factory('momentService',['$http',function($http){
+  var momentService = {};
+  momentService.createMoment = function(user) {
+      return $http({
+      method: 'POST',
+      url: 'http://localhost:3000/map',
+      data: {
+          'leadRank':1,
+          'adminApproval':true,
+          'userFname':user.fn,
+          'userLname':user.ln,
+          'age':user.age,
+          'rent11':user.r11,
+          'rent16':user.r16,
+          'status11':user.st11,
+          'status16':user.st16,
+          'city11':user.c11,
+          'city16':user.c16,
+          'salaryIncreased':user.sal,
+          'happy':user.happy,
+          "protestSucceed": user.success,
+          "government": user.gov,
+          "socialPressure": user.pressure,
+          "renewProtest": user.renew,
+          "tentImageLink": user.tent,
+          'userprofileImage':user.profile,
+          "conclusion":user.conc,
+          'tentCoor':{'latitude' : 34.777820, 'longitude' : 32.066823}
+      },
+      headers: {'Content-Type': 'application/json'}
+    });
+  };
+  return momentService;
+}]);

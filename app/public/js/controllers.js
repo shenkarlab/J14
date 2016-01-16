@@ -12,8 +12,8 @@ usersControllers.controller('UsersListCtrl', ['$scope', '$http','$routeParams',
 
 /*=============================================MAP CTRL============================================*/
 
-usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation',
-	function ($scope, $routeParams, $http, geolocation) {
+usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation','momentService',
+	function ($scope, $routeParams, $http, geolocation,momentService) {
 
 		//gloabal controller vars
 		$scope.markers = [];
@@ -43,7 +43,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		            	$('#image_upload_preview').css('backgroundImage','url('+e.target.result+')');
 
 		               // $('#image_upload_preview').css('background-image', e.target.result);
-		            }
+		            };
 
 	                reader.readAsDataURL(input.files[0]);
 		        }
@@ -81,7 +81,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 					mapObjectsCoor($scope.mapObjects);
 				});
 			});
-		}
+		};
+
 
 		function mapObjectsCoor(data){
 					  mapObjectsStack = [];
@@ -122,7 +123,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 									},"5000");
 							}
 						}
-		};
+		}
 
 		var createMarker = function (info , obj){
 
@@ -171,28 +172,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 									infoWindow.close($scope.map, marker);
 							});
 
-							//====================No need because we restrained the zoom====================//
-							//  //when the map zoom changes, resize the icon based on the zoom level so the marker covers the same geographic area
-							//  google.maps.event.addListener($scope.map, 'zoom_changed', function() {
-							// 		 var pixelSizeAtZoom0 = 13; //the size of the icon at zoom level 0
-							// 		 var maxPixelSize = 13; //restricts the maximum size of the icon, otherwise the browser will choke at higher zoom levels trying to scale an image to millions of pixels
-							// 		 var zoom = $scope.map.getZoom();
-							// 		 var relativePixelSize = Math.round(pixelSizeAtZoom0*Math.pow(3,zoom)); // use 2 to the power of current zoom to calculate relative pixel size.  Base of exponent is 2 because relative size should double every time you zoom in
-							 //
-							// 		 if(relativePixelSize > maxPixelSize) //restrict the maximum size of the icon
-							// 				 relativePixelSize = maxPixelSize;
-							// 		 //change the size of the icon
-							// 		 marker.setIcon(
-							// 				 new google.maps.MarkerImage(
-							// 						 marker.getIcon().url, //marker's same icon graphic
-							// 						 null,//size
-							// 						 null,//origin
-							// 						 null, //anchor
-							// 						 new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
-							// 				 )
-							// 		 );
-							//  });
-		}
+		};
 
 		//init the lead data to the lead right nav
 		$scope.rightNavContentLead = function(marker){
@@ -218,7 +198,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 						console.log(" Content is not defined");
 					}
 				});
-		}
+		};
 
 		//init the story data to the story right nav
 		$scope.rightNavContentStory = function(marker){
@@ -265,7 +245,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 					}
 					tempMarker = marker;
 			});
-		}
+		};
 		//init the map
     function initialize(_data, center){
 	      var mapCanvas = document.getElementById('map-canvas');
@@ -275,15 +255,16 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 						minZoom:16,
 	      		mapTypeId: google.maps.MapTypeId.ROADMAP,
 	      		styles: _data
-	      }
+	      };
 	      $scope.map = new google.maps.Map(mapCanvas, mapOptions);
 
 				//click listener for adding new story
 				map = $scope.map;
 				$scope.map.addListener('click', function(e) {
-						placeMarker(e.latLng, map);
+						placeMarker(e.latLng,map);
 				});
     }
+
 
 		//on click on the map a marker for share or add new will added to the map
 		////--todo-- the form and the buttoms beside the maker--//
@@ -317,7 +298,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 		//click listener to go the the current lead story
 		$(".lead-button").click(function() {
-				$scope.rightNavContentStory($scope.markers[randomLead]);
+            $scope.rightNavContentStory($scope.markers[randomLead]);
 				$("#right-nav-lead").css( "display", "none" );
 				$("#right-nav-story").css( "display", "block" );
 				noLeadClicked = false;
@@ -326,7 +307,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 		//click listener to go the next story
 		$(".story-button").click(function() {
-				randomLead =	Math.floor(Math.random() * ($scope.markers.length));
+				randomLead = Math.floor(Math.random() * ($scope.markers.length));
 				//console.log(randomLead);
 				$scope.rightNavContentStory($scope.markers[randomLead]);
 		});
@@ -394,16 +375,21 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		//draw chart example from our CDN
 		//drawChart();
 
-		//will be called after the user finished filling the form and pack it into jason
+		//will be called after the user finished filling the form and pack it into json
 		//--TODO -- upload data to mongo
-		$scope.SendUserData = function(user) {
-	        $scope.userMaster = angular.copy(user);
-	        console.log($scope.userMaster.name);
-	        var name = $scope.userMaster.name;
+			$scope.createMoment = function (user,e){
+				momentService.createMoment(user,e)
+					.then(function(result){
 
-	        window.alert(name+", תודה על השתתפותך נתונך עברו לאישור עורכי האתר");
-	        closeForm();
-	    };
+					});
+				$scope.userMaster = angular.copy(user);
+				console.log($scope.userMaster.fn);
+				var name = $scope.userMaster.fn;
+
+				window.alert(name+", תודה על השתתפותך נתונך עברו לאישור עורכי האתר");
+				closeForm();
+
+			};
 
 	    //after filling the form correctly close the form and return to the regular view
 	    function closeForm(){
@@ -415,7 +401,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 		//on click on the map a marker for share or add new will added to the map
 		//--todo-- the form and the buttoms beside the maker--//
-		function placeMarker(latLng, map) {
+		function placeMarker(latLng,map) {
 			if(!newMarkerAdded){
 
 				//const version
@@ -478,7 +464,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 				$("#form-fourth-page").css( "display", "none" );
 				$("#form-fifth-page").css( "display", "block" );
 			}
-		})
+		});
 
 		//form prev bottom function
 		$("#form-prev-botton").click(function(){
@@ -502,7 +488,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 				$("#form-fourth-page").css( "display", "block" );
 				$("#form-fifth-page").css( "display", "none" );
 			}
-		})
+		});
 
 		//form close votton function, it the user clicked on it the marker temp marker will be removed
 		$("#close-form").click(function(){

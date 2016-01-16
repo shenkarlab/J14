@@ -29,9 +29,12 @@
         <div class="story-button">לסיפור הבא</div>
     </div>
 
+
+
+<!--form start-->
+
     <div id="right-nav-form">
       <form>
-
             <h2>הייתי כאן - הוסף אותי</h2>
             <div id="close-form">X</div>
 
@@ -39,11 +42,11 @@
               <h3>ספר לנו על עצמך</h3>
 
                 שם פרטי:<br>
-                <input type="text" id="userName" ng-model="user.name" required >
+                <input type="text" id="userName" ng-model="user.fn" required >
                 <br>
 
                 שם משפחה:<br>
-                <input type="text" id="userLastName" ng-model="user.lName" required>
+                <input type="text" id="userLastName" ng-model="user.ln" required>
                 <br>
 
                 גיל:<br>
@@ -51,7 +54,7 @@
                 <br>
 
                 מצב משפחתי:<br>
-                <select name="status11" ng-model="user.status11" required>
+                <select name="status11" ng-model="user.st11" required>
                   <option value="single">רווק</option>
                   <option value="married">נשוי</option>
                   <option value="devorced">גרוש</option>
@@ -59,11 +62,11 @@
                 <br>
 
                 עיר מגורים:<br>
-                <input type="text"  ng-model="user.city11" required>
+                <input type="text"  ng-model="user.c11" required>
                 <br>
 
                 שכר דירה:<br>
-                <input type="text"  ng-model="user.rent11" required>
+                <input type="text"  ng-model="user.r11" required>
                 <br>
                 <br>
                 <!-- google plus login secion  -->
@@ -79,7 +82,7 @@
               <h3>משהו השתנה ב 2016?</h3>
 
                 מצב משפחתי:<br>
-                <select name="status16" ng-model="user.status16" required>
+                <select name="status16" ng-model="user.st16" required>
                   <option value="single">רווק</option>
                   <option value="married">נשוי</option>
                   <option value="devorced">גרוש</option>
@@ -87,11 +90,11 @@
                 <br>
 
                 עיר מגורים:<br>
-                <input type="text" ng-model="user.city16" required>
+                <input type="text" ng-model="user.c16" required>
                 <br>
 
                 שכר דירה:<br>
-                <input type="text" ng-model="user.rent16" required>
+                <input type="text" ng-model="user.r16" required>
                 <br>
             </div>
 
@@ -99,30 +102,39 @@
                 <h3>אנחנו רוצים לשמוע את דעתך</h3>
 
                 המחאה של 2011 הצליחה?<br>
-                <select name="q1" ng-model="user.q1" required>
+                <select name="q1" ng-model="user.success" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
                 <br>
 
                 האם הממשלה תצליח להוריד רת מחירי הדירות?<br>
-                <select name="q2" ng-model="user.q2" required>
+                <select name="q2" ng-model="user.gov" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
                 <br>
 
                 לחץ ציבורי משפיע על מקבלי ההחלטות לדעתך?<br>
-                <select name="q3" ng-model="user.q3" required>
+                <select name="q3" ng-model="user.pressure" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
                 <br>
 
+
                 צריך לחדש את מחאת הדיור?<br>
-                <select name="q4" ng-model="user.q4" required>
+                <select name="q4" ng-model="user.renew" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
+                </select>
+                <br>
+
+<br>
+                איך אתה מרגיש כלפי העתיד?
+                <select name="q5" ng-model="user.happy" required>
+                    <option value="yes">כן</option>
+                    <option value="no">לא</option>
                 </select>
                 <br>
 
@@ -132,7 +144,7 @@
                 <h3>עוד קצת וסיימנו</h3>
                 איך אתם רואים את המחאה היום?<br>
                 מה השתנה בישראל מאז - ומה השתנה אצלך?<br>
-                <textarea rows="6" cols="50" ng-model="user.freeText">
+                <textarea rows="6" cols="50" ng-model="user.conc">
                 </textarea>
             </div>
 
@@ -147,9 +159,11 @@
 
             <div id="form-prev-botton"><<br>הקודם</div>
             <div class="yellow-botton" id="form-next-botton">><br>הבא</div>
-            <div class="yellow-botton" id="form-send-botton" ng-click="SendUserData(user)" value="Save" />שלח</div>
+            <div class="yellow-botton" id="form-send-botton" ng-click="createMoment(user)" value="Save" />שלח</div>
     </form>
     </div>
+
+
 
 
     <form id="campSelect" action="#" method="get">
