@@ -374,11 +374,15 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 		//will be called after the user finished filling the form and pack it into json
 		//--TODO -- upload data to mongo
-			$scope.createMoment = function (user,e){
-				momentService.createMoment(user,e)
-					.then(function(result){
+			$scope.createMoment = function (user,callback){
+                debugger;
 
-					});
+                momentService.createMoment(user,function(moment){
+                    callback(moment);
+                });
+                //momentService.createMoment = function(_fn, _ln, _age, _st11,_st16 ,_c11,_c16,_r11,_r16,_sal,_happy,_protestSucceed,_gov,_social,_renew,_conc,_lan,_lat,callback)  {
+
+
 				$scope.userMaster = angular.copy(user);
 				console.log($scope.userMaster.fn);
 				var name = $scope.userMaster.fn;

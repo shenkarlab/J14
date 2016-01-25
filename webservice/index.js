@@ -19,16 +19,13 @@ app.get('/get', function(req,res){
 	res.json(usersAction.getData());
 });
 
-
-
 app.post('/map', function(req,res){
 	var Obj = (req.body);
     console.log(JSON.stringify(Obj));
-
     console.log(" req.body !!!!!" + Obj);
 	res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Header", "Origin, X-Requested-With,Content-Type, Accept");
-	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE','OPTIONS');
 	app.set('json spaces',4);
 	res.set("Content-Type", "application/json");
 	usersAction.createMoment(

@@ -35,31 +35,34 @@ j14App.config(['$routeProvider',
 
 j14App.factory('momentService',['$http',function($http){
   var momentService = {};
-  momentService.createMoment = function(user) {
+
+
+        momentService.createMoment = function(_fn, _ln, _age, _st11,_st16 ,_c11,_c16,_r11,_r16,_sal,_happy,_protestSucceed,_gov,_social,_renew,_conc,_lan,_lat,callback)  {
       return $http({
       method: 'POST',
       url: 'http://localhost:3000/map',
+      dataType: 'json',
+      crossDomain: true,
       data: {
           'leadRank':1,
           'adminApproval':true,
-          'userFname':user.fn,
-          'userLname':user.ln,
-          'age':user.age,
-          'rent11':user.r11,
-          'rent16':user.r16,
-          'status11':user.st11,
-          'status16':user.st16,
-          'city11':user.c11,
-          'city16':user.c16,
-          'salaryIncreased':user.sal,
-          'happy':user.happy,
-          "protestSucceed": user.success,
-          "government": user.gov,
-          "socialPressure": user.pressure,
-          "renewProtest": user.renew,
-          "tentImageLink": user.tent,
-          'userprofileImage':user.profile,
-          "conclusion":user.conc,
+          'userFname':_fn,
+          'userLname':_ln,
+          'age':_age,
+          'rent11':r11,
+          'rent16':r16,
+          'status11':st11,
+          'status16':_st16,
+          'city11':_c11,
+          'city16':_c16,
+          'happy':_happy,
+          "protestSucceed": _protestSucceed,
+          "government": _gov,
+          "socialPressure": _social,
+          "renewProtest": _renew,
+          "tentImageLink": _tent,
+          'userprofileImage':_profile,
+          "conclusion":_conc,
           'tentCoor':{'latitude' : 34.777820, 'longitude' : 32.066823}
       },
       headers: {'Content-Type': 'application/json'}
