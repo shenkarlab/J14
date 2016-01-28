@@ -24,7 +24,6 @@ var usersSchema = new schema({
     city16: String,
     happy: String,
     protestSucceed: String,
-    regrets: String,
     government: String,
     socialPressure: String,
     renewProtest: String,
@@ -35,7 +34,6 @@ var usersSchema = new schema({
       latitude:String,
       longitude:String
     }]
-
   }]
 }, {collection: 'campsnames'});
 

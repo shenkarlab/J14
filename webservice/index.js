@@ -25,7 +25,7 @@ app.post('/map', function(req,res){
     console.log(" req.body !!!!!" + Obj);
 	res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Header", "Origin, X-Requested-With,Content-Type, Accept");
-	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE','OPTIONS');
+	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
 	app.set('json spaces',4);
 	res.set("Content-Type", "application/json");
 	usersAction.createMoment(
@@ -40,7 +40,6 @@ app.post('/map', function(req,res){
         Obj.status16,
         Obj.city11,
         Obj.city16,
-        Obj.salaryIncreased,
         Obj.happy,
         Obj.protestSucceed,
         Obj.government,
