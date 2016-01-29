@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#F2F1F1;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#F2F1F1;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:none;}
+	.st3{fill:none;stroke:#F2F1F1;stroke-linecap:round;}
+	.st4{clip-path:url(#SVGID_2_);fill:none;stroke:#F2F1F1;stroke-linecap:round;}
+</style>
+<path class="st0" d="M32.2,35.8H2.5c-1,0-1.5-0.8-1.5-1.5V16.1c0-1,0.8-1.5,1.5-1.5h29.7c1,0,1.5,0.8,1.5,1.5v18.2
+	C33.7,35.2,33,35.8,32.2,35.8z"/>
+<path class="st1" d="M7.9,17.5c1.4,0,2.6,1.1,2.6,2.5s-1.1,2.5-2.6,2.5c-1.4,0-2.6-1.1-2.6-2.5C5.4,18.6,6.5,17.5,7.9,17.5z
+	 M17.8,28.7l7.5-8.3c0.4-0.4,1-0.4,1.4,0l7.2,7.7 M5.2,35.9l8.9-10c0.4-0.6,1.2-0.6,1.8,0l8.7,9.8"/>
+<rect y="14.1" class="st2" width="49.6" height="22.1"/>
+<line class="st3" x1="44.6" y1="21.2" x2="44.6" y2="30.5"/>
+<g>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" y="14.1" width="49.6" height="22.1"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<line class="st4" x1="49.2" y1="25.8" x2="39.9" y2="25.8"/>
+	</g>
+</g>
+</svg>

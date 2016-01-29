@@ -3,331 +3,291 @@
                mass-autocomplete-item="autocomplete_options">
       </div> -->
 
+<!-- 
     <div id="right-nav-lead" class="right-nav">
         <div class="lead-story">{{leadStory}}</div>
         <div class="user-info">{{userInfo}}</div>
         <div class="lead-button">המשך קריאה</div>
-    </div>
+    </div> 
+-->
 
     <div id="right-nav-story" class="right-nav">
+        <div id="close-story"></div>
         <div class="protester-image">{{protesterImage}}</div>
         <div class="share-button"></div>
         <div class="report-botton"></div>
-        <div class="lead-story">{{leadStory}}</div>
+        <div class="lead-story">{{userName}}</div>
         <div class="user-info">{{userInfo}}</div>
+
         <div class="icons">
               <div class="icon" id="icon1"></div>
-              <div class="icon" id="icon2"></div>
-              <div class="icon" id="icon3"></div>
-              <div class="icon" id="icon4"></div>
               <div class="iconDesc" id="icon1Desc"></div>
+              <div class="icon" id="icon2"></div>
               <div class="iconDesc" id="icon2Desc"></div>
+              <div class="icon" id="icon3"></div>
               <div class="iconDesc" id="icon3Desc"></div>
-              <div class="iconDesc" id="icon4Desc"></div>
+              <div class="icon" id="icon4"></div>
+              <div class="iconDesc" id="icon4Desc"></div>    
         </div>
+
         <div class="protest-story">{{protestStory}}</div>
-        <div class="story-button">לסיפור הבא</div>
+        <div id="defaultUserImage"></div>
+        <div class="clear"></div>
+        <!-- <div class="story-button">לסיפור הבא</div> -->
     </div>
 
 <!--form start-->
 
     <div id="right-nav-form">
-      <form>
+      <form name="form">
             <h2 class="form-h2">הייתי כאן - הוסף אותי</h2>
-            <div id="close-form">X</div>
+            <div id="close-form"></div>
+            <div id="report-form">
+              <label title="דווח"></label>
+            </div>
+
+            <!-- form first page -->
             <div class="form" id="form-first-page">
-<!-- 
-              <div ng-model="user.latitude">{{user.latitude}}</div>
-              <div ng-model="user.longitude">{{user.longitude}}</div> -->
 
               <div class="frame">
-                <div class="cloud">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
-                </div>  
-                <div class="cloud, cloud_on_top">
-                   <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>      
-                <div class="cloud_solo">
-                 <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-                <div class="horizon">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/> 
-                </div>
-                <div class="tree1">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>  
-                </div>  
-                <div class="tree2">
-                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>    
-                </div>
-                
-                <div class="tree3">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
-                </div>
-
+                <div class="cloud"><img src="../../images/cloud.svg"/></div>  
+                <div class="cloud cloud_on_top"><img src="../images//cloud.svg"/></div>      
+                <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
+                <div class="horizon"><img src="../../images/horizon.svg"/> </div>
+                <div class="tree1"><img src="../../images/treebig.svg"/>  </div>  
+                <div class="tree2"><img src="../../images/tree1.svg"/> </div> 
+                <div class="tree3"><img src="../../images/tree1.svg"/></div>
               </div>
 
               <h3 class="form-h3">ספר לנו על עצמך</h3>
+              <p class="err"></p>
+              שם פרטי:<br>
 
-                שם פרטי:<br>
-                <input type="text" id="userName" ng-model="user.fn" required>
-                <br>
+              <input type="text" name="userName" id="userName" ng-model="user.fn" required>
+              <span class="error" ng-show="form.userName.$error.required">*</span>
+              <br>
+              שם משפחה:<br>
+              <input type="text" name="userLastName" id="userLastName" ng-model="user.ln" required>
+              <span class="error" ng-show="form.userLastName.$error.required">*</span>
+              <br>
+              גיל:<br>
+              <input type="number" name="userAge" id="userAge" ng-model="user.age" min="1" max="100" required>
+              <span class="error" ng-show="form.userAge.$error.required">*</span>
+              <span class="error" ng-show="form.userAge.$error.min || form.userAge.$error.max">
+                הגיל שהוזן איתו תקין</span>
+              <br>
 
-                שם משפחה:<br>
-                <input type="text" id="userLastName" ng-model="user.ln" required>
-                <br>
-
-                גיל:<br>
-                <input type="text" ng-model="user.age" required>
-                <br>
             </div>
 
+            <!-- form second page -->
             <div class="form" id="form-second-page">
 
               <div class="frame">
-                <div class="cloud">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
-                </div>
-                
-                <div class="cloud, cloud_on_top">
-                      <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-                
-                <div class="cloud_solo">
-                          <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-
-                <div class="horizon">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
-                  
-                </div>
-                <div class="tree1">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>
-                </div>
-                <div class="tree2">
-                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>
-                </div>       
-                <div class="tree3">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
-                </div>
+                <div class="cloud"><img src="../../images/cloud.svg"/></div>  
+                <div class="cloud cloud_on_top"><img src="../images//cloud.svg"/></div>      
+                <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
+                <div class="horizon"><img src="../../images/horizon.svg"/> </div>
+                <div class="tree1"><img src="../../images/treebig.svg"/>  </div>  
+                <div class="tree2"><img src="../../images/tree1.svg"/> </div> 
+                <div class="tree3"><img src="../../images/tree1.svg"/></div>
               </div>
 
               <h3 class="form-h3">אז איפה היית ב-2011?</h3>
-
+              <p class="err"></p>
                 מצב משפחתי:<br>
-                <select name="status11" ng-model="user.st11" required>
+                <select name="status11" id="status11" ng-model="user.st11" ng-init="user.st11=''" required>
                   <option value="single">רווק</option>
                   <option value="married">נשוי</option>
                   <option value="devorced">גרוש</option>
                 </select>
-                <br>
-
-                עיר מגורים:<br>
-                <input type="text"  ng-model="user.c11" required>
-                <br>
-
-                האם השכרת דירה?<br>
-                <select name="q4" ng-model="user.didRent11" required>
-                  <option value="yes">כן</option>
-                  <option value="no">לא</option>
-                </select>
-                <br>
-
-                שכר דירה:<br>
-                <input type="text"  ng-model="user.r11" required>
-                <br>
-                <br>
-
-            </div>
-
-            <div class="form" id="form-third-page">
-              <div class="frame">
-                <div class="cloud">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
-                </div>
-                <div class="cloud, cloud_on_top">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-                <div class="cloud_solo">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-                <div class="horizon">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
-                </div>
-                <div class="tree1">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>
-                </div>
-                <div class="tree2">
-                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>
-                </div>
-                <div class="tree3">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
-                </div>
-                <div class="tent1">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
-                </div>
-              </div>
-              <h3>משהו השתנה ב 2016?</h3>
-                מצב משפחתי:<br>
-                <select name="status16" ng-model="user.st16" required>
-                  <option value="single">רווק</option>
-                  <option value="married">נשוי</option>
-                  <option value="devorced">גרוש</option>
-                </select>
+                <span class="error" ng-show="form.status11.$error.required">*</span>
                 <br>
                 עיר מגורים:<br>
-                <input type="text" ng-model="user.c16" required>
-                <br>
+                <input type="text" list="cities11" name="cities11input" id="cities11input" ng-model="user.c11"
+                 ng-init="user.c11=''"  required>
+                <span class="error" ng-show="form.cities11input.$error.required">*</span>
+                  <datalist id="cities11">
+                    <!-- will be load with all the cities -->
+                  </datalist>
                   
+                  <br>
                 האם השכרת דירה?<br>
-                <select name="q4" ng-model="user.didRent16" required>
+                <select type="text" name="didRent11" id="didRent11"
+                  ng-model="user.didRent11" ng-init="user.didRent11=''" ng-change="openRent(11,user.didRent11)" required>               
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
+                <span class="error" ng-show="form.didRent11.$error.required">*</span>
                 <br>
-
-                שכר דירה:<br>
-                <input type="text" ng-model="user.r16" required>
-                <br>
+                <div class="rent11">
+                  שכר דירה:<br>
+                  <input type="number" id="rent11" name="rent11" 
+                    ng-model="user.r11" ng-init="user.r11=''"  min="1" max="20000" required>
+                  <span class="error" ng-show="form.rent11.$error.required">*</span>
+                  <span class="error" ng-show="form.rent11.$error.min || form.rent11.$error.max">
+                    שכר הדירה שהוזן איתו תקין</span>
+                  <br><br>
+              </div>
             </div>
 
-            <div class="form" id="form-fourh-page">
-                <div class="frame">
-                  <div class="cloud">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
-                  </div>
-                  <div class="cloud, cloud_on_top">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                  </div>
-                  <div class="cloud_solo">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                  </div>
-                  <div class="horizon">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
-                  </div>
-                  <div class="tree1">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>   
-                  </div>
-                  <div class="tree2">        
-                   <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>           
-                  </div>
-                  <div class="tree3">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
-                  </div>    
-                  <div class="tent1">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
-                  </div>
-                  <div class="tent2">
-                    <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
-                  </div>
+
+
+            <!-- form third page -->
+            <div class="form" id="form-third-page">
+
+              <div class="frame">
+                <div class="cloud"><img src="../../images/cloud.svg"/></div>
+                <div class="cloud, cloud_on_top"><img src="../../images/cloud.svg"/></div>
+                <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
+                <div class="horizon"><img src="../../images/horizon.svg"/></div>
+                <div class="tree1"><img src="../../images/treebig.svg"/></div>
+                <div class="tree2"><img src="../../images/tree1.svg"/></div>
+                <div class="tree3"><img src="../../images/tree1.svg"/></div>
+                <div class="tent1"><img src="../../images/tent.svg"/></div>
+              </div>
+
+              <h3>משהו השתנה ב 2016?</h3>
+              <p class="err"></p>
+                מצב משפחתי:<br>
+                <select type="text"  ng-init="user.st16=''"
+                  id="status16" name="status16" ng-model="user.st16" required>
+                  <option value="single">רווק</option>
+                  <option value="married">נשוי</option>
+                  <option value="devorced">גרוש</option>
+                </select>
+                <span class="error" ng-show="form.status16.$error.required">*</span>
+                <br>
+                עיר מגורים:<br>
+                <input type="text" list="cities16input" name="cities16input" id="cities16input" 
+                ng-model="user.c16" ng-init="user.c16=''" required >
+                <span class="error" ng-show="form.cities16input.$error.required">*</span>
+                  <datalist id="cities16">
+                    <!-- will be load with all the cities -->
+                  </datalist>
+                <br>          
+                האם השכרת דירה?<br>
+                <select name="didRent16" ng-init="user.didRent16=''"
+                 id="didRent16" ng-model="user.didRent16"  ng-change="openRent(16,user.didRent16)" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
+                <span class="error" ng-show="form.didRent16.$error.required">*</span>
+
+                <br>
+                <div class="rent16">
+                    שכר דירה:<br>
+                    <input type="number" name="rent16" id="rent16" ng-model="user.r16"  ng-init="user.r16=''" min="1" max="20000" required>
+                    <span class="error" ng-show="form.rent16.$error.required">*</span>
+                    <span class="error" ng-show="form.rent16.$error.min || form.rent16.$error.max">
+                    שכר הדירה שהוזן איתו תקין</span>
+                    <br>
                 </div>
+            </div>
+
+            <!-- form fourth page -->
+            <div class="form" id="form-fourth-page">
+
+                <div class="frame">
+                  <div class="cloud"><img src="../../images/cloud.svg"/></div>
+                  <div class="cloud cloud_on_top"><img src="../../images/cloud.svg"/></div>
+                  <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
+                  <div class="horizon"><img src="../../images/horizon.svg"/></div>
+                  <div class="tree1"><img src="../../images/treebig.svg"/></div>
+                  <div class="tree2"><img src="../../images/tree1.svg"/></div>
+                  <div class="tree3"><img src="../../images/tree1.svg"/></div>    
+                  <div class="tent1"><img src="../../images/tent.svg"></div>
+                  <div class="tent2"><img src="../../images/tent.svg"></div>
+                </div>
+
                 <h3>אנחנו רוצים לשמוע את דעתך</h3>
-
+                <p class="err"></p>
                 המחאה של 2011 הצליחה?<br>
-                <select name="q1" ng-model="user.success" required>
+                <select type="text" name="q1" ng-model="user.success" ng-init="user.success=''" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
+                <span class="error" ng-show="form.q1.$error.required">*</span>
                 <br>
-
                 האם הממשלה תצליח להוריד רת מחירי הדירות?<br>
-                <select name="q2" ng-model="user.gov" required>
+                <select type="text" name="q2" ng-model="user.gov" ng-init="user.gov=''" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
+                <span class="error" ng-show="form.q2.$error.required">*</span>
                 <br>
-
                 לחץ ציבורי משפיע על מקבלי ההחלטות לדעתך?<br>
-                <select name="q3" ng-model="user.pressure" required>
+                <select type="text" name="q3" ng-model="user.pressure" ng-init="user.pressure=''" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
+                <span class="error" ng-show="form.q3.$error.required">*</span>
                 <br>
-
-
                 צריך לחדש את מחאת הדיור?<br>
-                <select name="q4" ng-model="user.renew" required>
+                <select type="text" name="q4" ng-model="user.renew" ng-init="user.renew=''" required>
                   <option value="yes">כן</option>
                   <option value="no">לא</option>
                 </select>
+                <span class="error" ng-show="form.q4.$error.required">*</span>
                 <br>
-
-                <br>
-                איך אתה מרגיש כלפי העתיד?
-                <select name="q5" ng-model="user.happy" required>
+                איך אתה מרגיש כלפי העתיד?<br>
+                <select type="text" name="q5" ng-model="user.happy" ng-init="user.happy=''" required>
                     <option value="yes">כן</option>
                     <option value="no">לא</option>
                 </select>
+                <span class="error" ng-show="form.q5.$error.required">*</span>
                 <br>
-
             </div>
 
-            <div class="form" id="form-fourth-page">
+
+            <!-- form fifth page -->
+            <div class="form" id="form-fifth-page">
+
               <div class="frame">
-                <div class="cloud">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
-                </div>
-                
-                <div class="cloud, cloud_on_top">
-                      <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-                
-                <div class="cloud_solo">
-                          <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
-                </div>
-
-                <div class="horizon">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
-                  
-                </div>
-                <div class="tree1">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>
-                  
-                </div>
-                
-                <div class="tree2">
-                  
-                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>
-                  
-                </div>
-                
-                <div class="tree3">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
-
-                </div>
-                
-                
-                <div class="tent1">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
-                </div>
-                
-                  <div class="tent2">
-                  <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
-                </div>
-
-              <div class="sign">
-                <img src="https://dl.dropboxusercontent.com/u/95840304/sign.svg" alt="">
+                <div class="cloud"><img src="../../images/cloud.svg"/></div>
+                <div class="cloud cloud_on_top"><img src="../../images/cloud.svg"/></div>
+                <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
+                <div class="horizon"><img src="../../images/horizon.svg"/></div>
+                <div class="tree1"><img src="../../images/treebig.svg"/></div>
+                <div class="tree2"><img src="../../images/tree1.svg"/></div>
+                <div class="tree3"><img src="../../images/tree1.svg"/></div>
+                <div class="tent1"><img src="../../images/tent.svg"/></div>
+                <div class="tent2"><img src="../../images/tent.svg"/></div>
+                <div class="sign"><img src="../../images/sign.svg"/></div>
               </div>
 
-              </div>
                 <h3>עוד קצת וסיימנו</h3>
+                <p class="err"></p>
                 איך אתם רואים את המחאה היום?<br>
                 מה השתנה בישראל מאז - ומה השתנה אצלך?<br>
-                <textarea rows="6" cols="50" ng-model="user.conc">
-                </textarea>
+                <textarea rows="6" cols="50" ng-model="user.conc" name="conc" ng-init="user.conc=''">
+                </textarea> 
+                <span class="error" ng-show="form.conc.$error.required">*</span>
             </div>
 
-            <div class="form" id="form-fifth-page">
+            <!-- form sixed page -->
+            <div class="form" id="form-sixed-page">
                 <h3>שלב אחרון!</h3>
                 שתף תמונה שלך שאתה הכי אוהב<br>
                 מתקופת המחאה החברתית
-                <input type='file' id="inputFile" />
+                <input type='file' id="inputFile"/>
                 <div id="image_upload_preview"></div>
 
+                <input type='file' id="inputFile"/>
+                <div id="image_upload_preview"></div>
             </div>
 
             <div id="form-prev-botton"><<br>הקודם</div>
             <div class="yellow-botton" id="form-next-botton">><br>הבא</div>
             <div class="yellow-botton" id="form-send-botton" ng-click="createMoment(user)" value="Save" >שלח</div>
+
+            <div id="form-pagin">
+              <div id="form-pagin-1" class="form-pagin-open"></div>
+              <div id="form-pagin-2" class="form-pagin-close"></div>
+              <div id="form-pagin-3" class="form-pagin-close"></div>
+              <div id="form-pagin-4" class="form-pagin-close"></div>
+              <div id="form-pagin-5" class="form-pagin-close"></div>
+              <div id="form-pagin-6" class="form-pagin-close"></div>
+            </div>
     </form>
     </div>
 
