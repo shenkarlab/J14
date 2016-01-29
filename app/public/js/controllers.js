@@ -29,6 +29,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		var formPage = 0;
 		var LeadsInterval;
 		var noLeadClicked = true;
+		var	userLatitude;
+		var	userLongitude;
 
 		$("#inputFile").change(function () {
 				console.log("uploaded");
@@ -150,7 +152,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 										$scope.markers.push(marker);
 								}
 
-								google.maps.event.addListener(marker, 'click', function(){
+								google.maps.event.addListener(marker, 'click', function(){	
 										$scope.rightNavContentStory(marker);
 										$("#right-nav-lead").css( "display", "none" );
 										$("#right-nav-story").css( "display", "block" );
@@ -255,32 +257,17 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 	      };
 	      $scope.map = new google.maps.Map(mapCanvas, mapOptions);
 
-				//click listener for adding new story
-				map = $scope.map;
-				$scope.map.addListener('click', function(e) {
-						placeMarker(e.latLng,map);
-				});
+			//click listener for adding new story
+			map = $scope.map;
+			$scope.map.addListener('click', function(event) {
+				
+				console.log(event.latLng.lat()+" "+event.latLng.lng());
+				userLatitude = event.latLng.lat();
+				userLongitude = event.latLng.lng();
+				debugger;
+				placeMarker(event.latLng,map);
+			});
     }
-
-
-		//on click on the map a marker for share or add new will added to the map
-		////--todo-- the form and the buttoms beside the maker--//
-		//function placeMarker(latLng, map) {
-		//	var markerImage = new google.maps.MarkerImage(
-		//			'../../images/circle.svg',
-		//			new google.maps.Size(13,13), //size
-		//			null, //origin
-		//			null, //anchor
-		//			new google.maps.Size(13,13) //scale
-		//	);
-		//	var marker = new google.maps.Marker({
-		//			position: latLng,
-		//			animation: google.maps.Animation.DROP, //could be cool option
-		//			icon: markerImage,
-		//			id: iterator,
-		//			map:map
-		//	});
-		//}
 
 		//toggle the bottom nav div
 		$scope.toggle = function() {
@@ -375,7 +362,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		//will be called after the user finished filling the form and pack it into json
 		//--TODO -- upload data to mongo
 			$scope.createMoment = function (user,callback){
-                momentService.createMoment(user.fn,user.ln,user.age,user.st11,user.st16,user.r11,user.r16,user.happy,user.success,user.gov,user.pressure,user.renew,user.conc,"lan","lat",function(moment){
+                momentService.createMoment(user.fn,user.ln,user.age,user.st11,user.st16,user.r11,user.r16,user.happy,user.success,user.gov,user.pressure,user.renew,user.conc,userLongitude,userLatitude,function(moment){
                     callback(moment);
                 });
 

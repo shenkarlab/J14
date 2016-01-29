@@ -29,20 +29,47 @@
         <div class="story-button">לסיפור הבא</div>
     </div>
 
-
-
 <!--form start-->
 
     <div id="right-nav-form">
       <form>
-            <h2>הייתי כאן - הוסף אותי</h2>
+            <h2 class="form-h2">הייתי כאן - הוסף אותי</h2>
             <div id="close-form">X</div>
-
             <div class="form" id="form-first-page">
-              <h3>ספר לנו על עצמך</h3>
+<!-- 
+              <div ng-model="user.latitude">{{user.latitude}}</div>
+              <div ng-model="user.longitude">{{user.longitude}}</div> -->
+
+              <div class="frame">
+                <div class="cloud">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
+                </div>  
+                <div class="cloud, cloud_on_top">
+                   <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>      
+                <div class="cloud_solo">
+                 <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+                <div class="horizon">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/> 
+                </div>
+                <div class="tree1">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>  
+                </div>  
+                <div class="tree2">
+                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>    
+                </div>
+                
+                <div class="tree3">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
+                </div>
+
+              </div>
+
+              <h3 class="form-h3">ספר לנו על עצמך</h3>
 
                 שם פרטי:<br>
-                <input type="text" id="userName" ng-model="user.fn" required >
+                <input type="text" id="userName" ng-model="user.fn" required>
                 <br>
 
                 שם משפחה:<br>
@@ -52,6 +79,39 @@
                 גיל:<br>
                 <input type="text" ng-model="user.age" required>
                 <br>
+            </div>
+
+            <div class="form" id="form-second-page">
+
+              <div class="frame">
+                <div class="cloud">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
+                </div>
+                
+                <div class="cloud, cloud_on_top">
+                      <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+                
+                <div class="cloud_solo">
+                          <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+
+                <div class="horizon">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
+                  
+                </div>
+                <div class="tree1">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>
+                </div>
+                <div class="tree2">
+                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>
+                </div>       
+                <div class="tree3">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
+                </div>
+              </div>
+
+              <h3 class="form-h3">אז איפה היית ב-2011?</h3>
 
                 מצב משפחתי:<br>
                 <select name="status11" ng-model="user.st11" required>
@@ -65,6 +125,13 @@
                 <input type="text"  ng-model="user.c11" required>
                 <br>
 
+                האם השכרת דירה?<br>
+                <select name="q4" ng-model="user.didRent11" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
+                <br>
+
                 שכר דירה:<br>
                 <input type="text"  ng-model="user.r11" required>
                 <br>
@@ -72,9 +139,34 @@
 
             </div>
 
-            <div class="form" id="form-second-page">
+            <div class="form" id="form-third-page">
+              <div class="frame">
+                <div class="cloud">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
+                </div>
+                <div class="cloud, cloud_on_top">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+                <div class="cloud_solo">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+                <div class="horizon">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
+                </div>
+                <div class="tree1">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>
+                </div>
+                <div class="tree2">
+                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>
+                </div>
+                <div class="tree3">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
+                </div>
+                <div class="tent1">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
+                </div>
+              </div>
               <h3>משהו השתנה ב 2016?</h3>
-
                 מצב משפחתי:<br>
                 <select name="status16" ng-model="user.st16" required>
                   <option value="single">רווק</option>
@@ -82,9 +174,15 @@
                   <option value="devorced">גרוש</option>
                 </select>
                 <br>
-
                 עיר מגורים:<br>
                 <input type="text" ng-model="user.c16" required>
+                <br>
+                  
+                האם השכרת דירה?<br>
+                <select name="q4" ng-model="user.didRent16" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
                 <br>
 
                 שכר דירה:<br>
@@ -92,7 +190,36 @@
                 <br>
             </div>
 
-            <div class="form" id="form-third-page">
+            <div class="form" id="form-fourh-page">
+                <div class="frame">
+                  <div class="cloud">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
+                  </div>
+                  <div class="cloud, cloud_on_top">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                  </div>
+                  <div class="cloud_solo">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                  </div>
+                  <div class="horizon">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
+                  </div>
+                  <div class="tree1">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>   
+                  </div>
+                  <div class="tree2">        
+                   <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>           
+                  </div>
+                  <div class="tree3">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
+                  </div>    
+                  <div class="tent1">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
+                  </div>
+                  <div class="tent2">
+                    <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
+                  </div>
+                </div>
                 <h3>אנחנו רוצים לשמוע את דעתך</h3>
 
                 המחאה של 2011 הצליחה?<br>
@@ -124,7 +251,7 @@
                 </select>
                 <br>
 
-<br>
+                <br>
                 איך אתה מרגיש כלפי העתיד?
                 <select name="q5" ng-model="user.happy" required>
                     <option value="yes">כן</option>
@@ -135,6 +262,53 @@
             </div>
 
             <div class="form" id="form-fourth-page">
+              <div class="frame">
+                <div class="cloud">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt="">
+                </div>
+                
+                <div class="cloud, cloud_on_top">
+                      <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+                
+                <div class="cloud_solo">
+                          <img src="https://dl.dropboxusercontent.com/u/95840304/cloud.svg" alt=""/>
+                </div>
+
+                <div class="horizon">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/horizon.svg" alt=""/>
+                  
+                </div>
+                <div class="tree1">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/treebig.svg" alt=""/>
+                  
+                </div>
+                
+                <div class="tree2">
+                  
+                      <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt=""/>
+                  
+                </div>
+                
+                <div class="tree3">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tree1.svg" alt="blabla"/>
+
+                </div>
+                
+                
+                <div class="tent1">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
+                </div>
+                
+                  <div class="tent2">
+                  <img src="https://dl.dropboxusercontent.com/u/95840304/tent.svg" alt="">
+                </div>
+
+              <div class="sign">
+                <img src="https://dl.dropboxusercontent.com/u/95840304/sign.svg" alt="">
+              </div>
+
+              </div>
                 <h3>עוד קצת וסיימנו</h3>
                 איך אתם רואים את המחאה היום?<br>
                 מה השתנה בישראל מאז - ומה השתנה אצלך?<br>
@@ -156,9 +330,6 @@
             <div class="yellow-botton" id="form-send-botton" ng-click="createMoment(user)" value="Save" >שלח</div>
     </form>
     </div>
-
-
-
 
     <form id="campSelect" action="#" method="get">
         <input list="camps" name="camp" placeholder="חפש מאהל ברחבי הארץ">

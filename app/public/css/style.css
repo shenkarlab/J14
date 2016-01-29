@@ -59,7 +59,7 @@ ul{
 
 #right-nav-form{
   display: none;
-  background-color: #0d192c;
+  background-color: #1d2636;
   position: fixed;
   right:-1000px;
   height: 100%;
@@ -268,17 +268,16 @@ ul{
     /*//background-image: ;*/
 }
 
-#close-form{
+#close-form {
     float: left;
-    background: #e1e1e1;
     width: 40px;
-    color: #000000;
+    color: #ffffff;
     left: 0px;
-    font-size: 28px;
+    font-size: 14px;
     position: absolute;
     text-align: center;
     height: 40px;
-    top: 0px;
+    top: 10px;
 }
 
 .yellow-botton{
@@ -338,7 +337,7 @@ ul{
 }
 
 .form input,.form select{
-  width: 50%;
+  width: 295px;
   height: 30px;
   color: #000000;
 }
@@ -353,3 +352,333 @@ ul{
   height: 200px;
   background-size: cover;
 }
+
+.frame{
+
+  background-color:#1d2636;
+  position:relative;
+  width:295px;
+  height:100px;
+  overflow:hidden;
+}
+
+.horizon {
+  width:305px;
+  display:inline-block;
+  position:absolute;
+  z-index:1;
+  bottom:5px;
+  left:-5px;
+  -webkit-animation-name: horizon; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  animation-name: horizon;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@-webkit-keyframes horizon {
+   0%   {left:200px; bottom:5px;}
+  100% {left:-5px; bottom:5px;}
+}
+
+@-keyframes horizon {
+  0%   {left:200px; bottom:5px;}
+  100% {left:-5px; bottom:5px;}
+}
+
+.tree1 {
+  z-index:200;
+  width:50px;
+  position:absolute;
+  top:13px;
+  display:inline-block;
+  left:0;
+  -webkit-animation-name: tree1; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  animation-name: tree1;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+
+@-webkit-keyframes tree1 {
+   0%   {left:0px; top:-200px;}
+  100% {left:0px; top:13px;}
+}
+
+@-keyframes tree1 {
+  0%   {left:0px; top:-200px;}
+  100% {left:0px; top:13px;}
+}
+
+
+.tree2{
+  z-index:200;
+  width:40px;
+  display:inline-block;
+  position:absolute;
+  top:45px;
+  left:30px;
+  -webkit-animation-name: tree2; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1.2s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  animation-name: tree2;
+  animation-duration: 1.2s;
+  animation-iteration-count: 1;
+  
+}
+
+@-webkit-keyframes tree2 {
+   0%   {left:30px; top:-300px;}
+  100% {left:30px; top:45px;}
+}
+
+@-keyframes tree2 {
+  0%   {left:30px; top:-300px;}
+  100% {left:30px; top:45px;}
+}
+
+.tree3 {
+  z-index:100;
+  width:40px;
+  position:absolute;
+  top:45px;
+  right:0;
+  display:inline-block;
+  -webkit-animation-name: tree3; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1.5s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  animation-name: tree3;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+}
+
+@-webkit-keyframes tree3 {
+   0%   {right:0; top:-400px;}
+  100% {right:0; top:45px;}
+}
+
+@-keyframes tree3 {
+  0%   {right:0; top:-400px;}
+  100% {right:0; top:45px;}
+}
+
+
+
+.cloud{
+  z-index:150;
+  width:70px;
+  display:inline-block;
+  position:absolute;
+  top:0;
+  left:400px;
+  -webkit-animation-name: cloud; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 12s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 100; /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: linear;
+  animation-name: cloud;
+  animation-duration: 12s;
+  animation-iteration-count:100;
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes cloud {
+   0%   {left:-100px; top:0px;}
+  100% {left:380px; top:0px;}
+}
+
+@-keyframes cloud {
+  0%   {left:-100px; top:0;}
+  100% {left:380px; top:0;}
+}
+
+.cloud_on_top{
+  z-index:400;
+  width:50px;
+  display:inline-block;
+  position:absolute;
+  left:30px;
+  top:15px;  
+  -webkit-animation-name: cloud_on_top; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 12s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 100; /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: linear;
+  animation-name: cloud_on_top;
+  animation-duration: 12s;
+  animation-iteration-count:100;
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes cloud_on_top {
+   0%   {left:-70px; top:15px;}
+  100% {left:410px; top:15px;}
+}
+
+@-keyframes cloud_on_top {
+  0%   {left:-70px; top:15px;}
+  100% {left:410px; top:15px;}
+}
+
+.cloud_solo{
+  z-index:400;
+  width:50px;
+  display:inline-block;
+  position:absolute;
+  top:5px;  
+  -webkit-animation-name: cloud_solo; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 18s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 100; /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: linear;
+  animation-name: cloud_solo;
+  animation-duration: 18s;
+  animation-iteration-count:100;
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes cloud_solo {
+   0%   {left:-270px; top:5px;}
+  100% {left:430px; top:5px;}
+}
+
+@-keyframes cloud_solo {
+  0%   {left:-270px; top:5px;}
+  100% {left:430px; top:5px;}
+}
+
+
+
+.tent1{
+  z-index:600;
+  width:75px;
+  display:inline-block;
+  position:absolute;
+  top:38px;
+  left:70px;
+  -webkit-animation-name: tent1; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: ease-in;
+  animation-name: tent1;
+  animation-duration: 2s;
+  animation-iteration-count:1;
+  animation-timing-function: ease-in;
+}
+
+
+@-webkit-keyframes tent1 {
+   0%   {left:70px; top:-235px;}
+  100% {left:70px; top:35px;}
+}
+
+@-keyframes tent1 {
+  0%   {left:70px; top:-235px;}
+  100% {left:70px; top:35px;}
+}
+
+
+
+
+.tent2{
+  z-index:600;
+  width:55px;
+  display:inline-block;
+  position:absolute;
+  top:50px;
+  left:180px;
+  -webkit-animation-name: tent2; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: linear;
+  animation-name: tent2;
+  animation-duration: 1s;
+  animation-iteration-count:1;
+  animation-timing-function: linear;
+}
+
+
+@-webkit-keyframes tent2 {
+   0%   {left:180px; top:-235px;}
+  100% {left:180px; top:50px;}
+}
+
+@-keyframes tent2 {
+  0%   {left:180px; top:-235px;}
+  100% {left:180px; top:50px;}
+}
+
+
+
+
+
+.tent2{
+  z-index:600;
+  width:55px;
+  display:inline-block;
+  position:absolute;
+  top:50px;
+  left:180px;
+ 
+}
+
+
+
+
+.sign{
+  z-index:300;
+  width:35px;
+  display:inline-block;
+  position:absolute;
+  top:30px;
+  left:110px;
+  -webkit-transform: rotate(10deg); 
+  -webkit-animation-name: sign; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s; /* Chrome, Safari, Opera */
+  -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: ease-out;
+  transform: rotate(10deg); 
+  animation-name: sign;
+  animation-duration: 1s;
+  animation-iteration-count:1;
+  animation-timing-function: ease-out;
+}
+
+@-ms-keyframes sign { 
+        from { 
+            -ms-transform: rotate(30deg); 
+        } to { 
+            -ms-transform: rotate(10deg); 
+        }
+         0% {left:90px; top:55px; opacity:0.5;}
+        100% {left:110px; top:30px; opacity:1;}
+
+    }
+@-moz-keyframes sign { 
+        from { 
+            -moz-transform: rotate(30deg); 
+        } to { 
+            -moz-transform: rotate(10deg); 
+        }
+    }
+@-webkit-keyframes sign { 
+        from { 
+            -webkit-transform: rotate(30deg); 
+        } to { 
+            -webkit-transform: rotate(10deg); 
+        }
+         0% {left:90px; top:55px; opacity:0.5;}
+        100% {left:110px; top:30px; opacity:1;}
+
+    }
+@keyframes sign { 
+        from { 
+            transform: rotate(30deg); 
+        } to { 
+            transform: rotate(10deg); 
+        }
+         0% {left:90px; top:55px; opacity:0.5;}
+        100% {left:110px; top:30px; opacity:1;}
+
+    }
+    
