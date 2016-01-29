@@ -12,8 +12,8 @@ usersControllers.controller('UsersListCtrl', ['$scope', '$http','$routeParams',
 
 /*=============================================MAP CTRL============================================*/
 
-usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation','momentService',
-	function ($scope, $routeParams, $http, geolocation,momentService) {
+usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation','momentService','Upload',
+	function ($scope, $routeParams, $http, geolocation,momentService,Upload) {
 
 		//gloabal controller vars
 		$scope.markers = [];
@@ -29,6 +29,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		var formPage = 0;
 		var LeadsInterval;
 		var noLeadClicked = true;
+
+        var server = "http://localhost:3000/";
 
 		$("#inputFile").change(function () {
 				console.log("uploaded");
@@ -79,7 +81,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 				});
 			});
 		};
-
 
 		function mapObjectsCoor(data){
 					  mapObjectsStack = [];
@@ -372,20 +373,42 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		//draw chart example from our CDN
 		//drawChart();
 
+
 		//will be called after the user finished filling the form and pack it into json
 		//--TODO -- upload data to mongo
-			$scope.createMoment = function (user,callback){
-                momentService.createMoment(user.fn,user.ln,user.age,user.st11,user.st16,user.r11,user.r16,user.happy,user.success,user.gov,user.pressure,user.renew,user.conc,"lan","lat",function(moment){
-                    callback(moment);
-                });
+			$scope.createMoment = function (file,user,callback){
+                debugger;
+
+                if (angular.isDefined(user) && angular.isDefined(file)) {
+                    $scope.upload($scope.file,user);
+                }
+                //momentService.createMoment(user.fn,user.ln,user.age,user.st11,user.st16,user.c11,user.c16,user.r11,user.r16,user.happy,user.success,user.gov,user.pressure,user.renew,user.conc,"lan","lat",function(moment){
+
+
+                //});
 
                 $scope.userMaster = angular.copy(user);
 				console.log($scope.userMaster.fn);
 				var name = $scope.userMaster.fn;
-
 				window.alert(name+", תודה על השתתפותך נתונך עברו לאישור עורכי האתר");
 				closeForm();
 			};
+
+        $scope.upload = function (file,user) {
+            Upload.upload({
+                url: server + 'map',
+                data: {file: file, 'user': user},
+                method: 'POST'
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        };
+
 
 	    //after filling the form correctly close the form and return to the regular view
 	    function closeForm(){

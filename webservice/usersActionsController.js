@@ -4,6 +4,7 @@ var db = mongoose.connect('mongodb://ohadsas:ohadsas411@ds057954.mongolab.com:57
 var usersSchema  = require('./users_schema').usersSchema;
 mongoose.model('usersM', usersSchema);
 var usersAction;
+var newObj;
 
 mongoose.connection.once('open',function(){
 	var Users = this.model('usersM');
@@ -22,7 +23,9 @@ exports.getData = function(){
 	return usersAction;
 };
 
-exports.createMoment = function(_fn, _ln, _age, _st11,_st16 ,_c11,_c16,_r11,_r16,_sal,_happy,_protestSucceed,_gov,_social,_renew,_conc,_lan,_lat,callback) {
+
+exports.createMoment = function(_lr,_admin,_fn, _ln, _age, _r11,_r16,_st11,_st16 ,_c11,_c16,_happy,_protestSucceed,_gov,_social,_renew,tent,profile,_conc,_lan,_lat,callback) {
+
     var mongoose = require('mongoose');
     mongoose.connect('mongodb://ohadsas:ohadsas411@ds057954.mongolab.com:57954/j14');
     var usersSchema  = require('./users_schema').usersSchema;
@@ -54,27 +57,31 @@ exports.createMoment = function(_fn, _ln, _age, _st11,_st16 ,_c11,_c16,_r11,_r16
                     "government": _gov,
                     "socialPressure": _social,
                     "renewProtest": _renew,
-                    "tentImageLink": "link for tent image",
-                    "userprofileImage": "link for profile image",
+                    "tentImageLink": tent,
+                    "userprofileImage": profile,
                     "conclusion": _conc,
                     'tentCoor': {'latitude': _lat, 'longitude': _lan}
                 }
             }
         };
         var options = {
-            upsert : true
+            upsert : true, 'new': true
         };
-        Users.findOneAndUpdate(query, doc, options, function(err, results) {
-            if (err) {
+        Users.findOneAndUpdate(query, doc, options).then(function(response) {
+            if (response) {
                 mongoose.disconnect();
-                console.log("didnt found camp in that name!");
+                console.log("found camp in that name!");
+                callback(response);
+            }
+            else {
+                console.log("ERR didn't found camp in that name!");
                 callback(false);
-            } else {
-                console.log("results ", results);
-                mongoose.disconnect();
-                callback(results);
             }
         });
 
     });
+};
+
+exports.getObj = function(){
+    return newObj;
 };
