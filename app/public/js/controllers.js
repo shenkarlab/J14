@@ -29,7 +29,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		var formPage = 0;
 		var LeadsInterval;
 		var noLeadClicked = true;
-
         var server = "http://localhost:3000/";
 
 		$("#inputFile").change(function () {
@@ -109,7 +108,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 							if(noLeadClicked){
 									//init the first lead
 									setTimeout(function(){
-										randomLead =	Math.floor(Math.random() * ($scope.markers.length));
+										randomLead = Math.floor(Math.random() * ($scope.markers.length));
 										$scope.rightNavContentLead($scope.markers[randomLead]);
 									},"500");
 
@@ -374,13 +373,9 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 		//drawChart();
 
 
-		//will be called after the user finished filling the form and pack it into json
-		//--TODO -- upload data to mongo
 			$scope.createMoment = function (file,user,callback){
-                debugger;
-
                 if (angular.isDefined(user) && angular.isDefined(file)) {
-                    $scope.upload($scope.file,user);
+                    $scope.upload($scope.file,$scope.user);
                 }
                 //momentService.createMoment(user.fn,user.ln,user.age,user.st11,user.st16,user.c11,user.c16,user.r11,user.r16,user.happy,user.success,user.gov,user.pressure,user.renew,user.conc,"lan","lat",function(moment){
 
@@ -397,7 +392,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         $scope.upload = function (file,user) {
             Upload.upload({
                 url: server + 'map',
-                data: {file: file, 'user': user},
+                data: {file: file, user: user},
+                headers: {'Content-Type': undefined},
                 method: 'POST'
             }).then(function (resp) {
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);

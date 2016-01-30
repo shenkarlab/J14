@@ -17,17 +17,17 @@ app.use(cors());
 app.use(bodyParser());
 
 cloudinary.config({
-    cloud_name : 'j14',
-    api_key : '412388278361816',
-    api_secret : 'Rvl3srG9ODTOLyRgD8H9nRg7sk0'
+    cloud_name : 'bj14',
+    api_key : '978444816297389',
+    api_secret : '-qimhf9n3Wd9YobcOUXQOIA4CE8'
 });
 
 function isEmptyObject(obj) {
 
     if(typeof obj != 'undefined' && obj) {
-        return true;
-    }
         return false;
+    }
+        return true;
 }
 
 
@@ -52,18 +52,21 @@ app.post('/map', function(req, res) {
     app.set('json spaces',4);
     res.set("Content-Type", "application/json");
     var dataForm = {};
+    var dataFile = {};
     var form = new formidable.IncomingForm();
 
     form.parse(req, function(error, fields, files) {
         console.log('Parsing files from the user');
+
         dataForm = fields;
-            if(isEmptyObject(files) && (files.type == 'image/png' || files.type == 'image/jpeg')){
+        dataFile = JSON.stringify(files);
+        console.log(" FILESSSSS " + dataForm);
+        console.log(" DATA FILE " + dataFile);
+
+        if(!isEmptyObject(files)){
                 console.log("We have an image");
-                dataForm.fileType = "imageUploaded";
                 ImageSend = true;
             }
-
-        console.log(JSON.stringify(dataForm));
         //save the fields information
     });
 
@@ -75,32 +78,34 @@ app.post('/map', function(req, res) {
         console.log("in end");
         if (ImageSend) {
             var temp_path = this.openedFiles[0].path;
-            console.log("dataForm.type " + dataForm.fileType);
             var stream = cloudinary.uploader.upload_stream(function(result) {
                 console.log("in result from cloudinary");
-                if (isEmptyObject(result.url)) url = result.url;
-                console.log("URL : " + url);
-                console.log("dataForm " + dataForm.user.userFname);
+                //dataForm = fields;
+                console.log("RESULT " + JSON.stringify(result));
 
-                usersAction.createMoment(1, true, dataForm.user.userFname,dataForm.user.userLname, dataForm.user.age,
-                    dataForm.user.rent11,
-                    dataForm.user.rent16,
-                    dataForm.user.status11,
-                    dataForm.user.status16,
-                    dataForm.user.city11,
-                    dataForm.user.city16,
-                    dataForm.user.happy,
-                    dataForm.user.protestSucceed,
-                    dataForm.user.government,
-                    dataForm.user.socialPressure,
-                    dataForm.user.renewProtest,
+                if (!isEmptyObject(result.url)) url = result.url;
+                console.log("URL : " + url);
+                console.log("dataForm " + dataForm["user[age]"] + " ##############");
+
+                usersAction.createMoment(1, true, dataForm["user[fn]"],dataForm["user[ln]"], dataForm["user[age]"],
+                    dataForm["user[r11]"],
+                    dataForm["user[r16]"],
+                    dataForm["user[s11]"],
+                    dataForm["user[s16]"],
+                    dataForm["user[c11]"],
+                    dataForm["user[c16]"],
+                    dataForm["user[happy]"],
+                    dataForm["user[success]"],
+                    dataForm["user[gov]"],
+                    dataForm["user[pressure]"],
+                    dataForm["user[renew]"],
                     url,
                     "profileImg",
-                    dataForm.user.conclusion,
+                    dataForm["user[conc]"],
                     "lat",
-                    "long", function(files) {
-                        if(files){
-                            res.status(200).send(JSON.stringify(files));
+                    "long", function(docs) {
+                        if(docs){
+                            res.status(200).send(JSON.stringify(docs));
                         }
                         else{
                             res.status(500);
@@ -109,26 +114,27 @@ app.post('/map', function(req, res) {
             });
             var file_reader = fs.createReadStream(temp_path).pipe(stream);
         } else {
-                usersAction.createMoment(1, true ,dataForm.user.userFname,dataForm.user.userLname, dataForm.user.age,
-                    dataForm.user.rent11,
-                    dataForm.user.rent16,
-                    dataForm.user.status11,
-                    dataForm.user.status16,
-                    dataForm.user.city11,
-                    dataForm.user.city16,
-                    dataForm.user.happy,
-                    dataForm.user.protestSucceed,
-                    dataForm.user.government,
-                    dataForm.user.socialPressure,
-                    dataForm.user.renewProtest,
+            console.log("No IMAGE");
+                usersAction.createMoment(1, true ,dataForm["user[fn]"],dataForm["user[ln]"], dataForm["user[age]"],
+                    dataForm["user[r11]"],
+                    dataForm["user[r16]"],
+                    dataForm["user[s11]"],
+                    dataForm["user[s16]"],
+                    dataForm["user[c11]"],
+                    dataForm["user[c16]"],
+                    dataForm["user[happy]"],
+                    dataForm["user[success]"],
+                    dataForm["user[gov]"],
+                    dataForm["user[pressure]"],
+                    dataForm["user[renew]"],
                     url,
                     "profileImg",
-                    dataForm.user.conclusion,
+                    dataForm["user[conc]"],
                     "lat",
                     "long",
-                    function(files){
-                        if(files){
-                            res.status(200).send(JSON.stringify(files));
+                    function(docs){
+                        if(docs){
+                            res.status(200).send(JSON.stringify(docs));
                         }
                         else{
                             res.status(500);
