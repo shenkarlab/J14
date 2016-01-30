@@ -2,11 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f615f11-9731-4d56-a7b1-0c9227daf774" name="Default" comment="Client changes including google login">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/public/js/controllers.js" afterPath="$PROJECT_DIR$/app/public/js/controllersOLD.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/public/views/partials/map.html" afterPath="$PROJECT_DIR$/app/public/views/partials/mapOLD.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/black-circle.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/black-circle.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/continue.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/continue.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/next.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/next.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/notRenew.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/notRenew.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/optimi.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/optimi.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/pasimi.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/pasimi.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/payDown.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/payDown.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/payUp.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/payUp.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/renew.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/renew.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/rentDown.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/rentDown.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/rentUp.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/rentUp.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/report.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/report.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/yellow-circle.png" afterPath="$PROJECT_DIR$/app/public/images/OLD/yellow-circle.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/black-circle.png" afterPath="$PROJECT_DIR$/app/public/images/black-circle.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/fabicon.ico" afterPath="$PROJECT_DIR$/app/public/images/fabicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/yellow-circle.png" afterPath="$PROJECT_DIR$/app/public/images/yellow-circle.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/css/style.css" afterPath="$PROJECT_DIR$/app/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/index.html" afterPath="$PROJECT_DIR$/app/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/js/controllers.js" afterPath="$PROJECT_DIR$/app/public/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/views/partials/map.html" afterPath="$PROJECT_DIR$/app/public/views/partials/map.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webservice/index.js" afterPath="$PROJECT_DIR$/webservice/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/J14_happy.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/J14_happy.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/J14_nutral.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/J14_nutral.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/J14_sad.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/J14_sad.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/notRenew.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/notRenew.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/nutral.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/nutral.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/optimi.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/optimi.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/pasimi.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/pasimi.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/payDown.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/payDown.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/payNutral.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/payNutral.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/payUp.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/payUp.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/renew.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/renew.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/rentDown.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/rentDown.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/rentNutral.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/rentNutral.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/OLD/rentUp.svg" afterPath="$PROJECT_DIR$/app/public/images/OLD/rentUp.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/circle.svg" afterPath="$PROJECT_DIR$/app/public/images/circle.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/circleSelected.svg" afterPath="$PROJECT_DIR$/app/public/images/circleSelected.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/notRenew.svg" afterPath="$PROJECT_DIR$/app/public/images/notRenew.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/nutral.svg" afterPath="$PROJECT_DIR$/app/public/images/nutral.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/optimi.svg" afterPath="$PROJECT_DIR$/app/public/images/optimi.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/pasimi.svg" afterPath="$PROJECT_DIR$/app/public/images/pasimi.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/payDown.svg" afterPath="$PROJECT_DIR$/app/public/images/payDown.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/payUp.svg" afterPath="$PROJECT_DIR$/app/public/images/payUp.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/renew.svg" afterPath="$PROJECT_DIR$/app/public/images/renew.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/rentDown.svg" afterPath="$PROJECT_DIR$/app/public/images/rentDown.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/rentNutral.svg" afterPath="$PROJECT_DIR$/app/public/images/rentNutral.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/images/rentUp.svg" afterPath="$PROJECT_DIR$/app/public/images/rentUp.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/json/camps.json" afterPath="$PROJECT_DIR$/app/public/json/camps.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/public/json/map.json" afterPath="$PROJECT_DIR$/app/public/json/map.json" />
     </list>
     <ignored path="J14.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,16 +71,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="camp.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/public/js/camp.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="120" selection-start-line="0" selection-start-column="108" selection-end-line="0" selection-end-column="120" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="users_schema.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webservice/users_schema.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -48,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/public/js/controllers.js">
+      <file leaf-file-name="controllersOLD.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/public/js/controllersOLD.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4059406">
-              <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.7777777">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -83,8 +116,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.3333335">
-              <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.708333">
+              <caret line="594" column="28" selection-start-line="594" selection-start-column="28" selection-end-line="594" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -100,27 +133,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
+      <file leaf-file-name="mapOLD.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/public/views/partials/mapOLD.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.333333">
-              <caret line="158" column="18" selection-start-line="158" selection-start-column="18" selection-end-line="158" selection-end-column="18" />
+            <state vertical-scroll-proportion="-7.5833335">
+              <caret line="152" column="53" selection-start-line="152" selection-start-column="53" selection-end-line="152" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usersActionsController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webservice/usersActionsController.js">
+      <file leaf-file-name="map.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+            <state vertical-scroll-proportion="-8.833333">
+              <caret line="288" column="23" selection-start-line="288" selection-start-column="23" selection-end-line="288" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/public/js/controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3387471">
+              <caret line="656" column="11" selection-start-line="656" selection-start-column="11" selection-end-line="656" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -141,9 +192,12 @@
         <option value="$PROJECT_DIR$/app/public/js/camp.js" />
         <option value="$PROJECT_DIR$/app/public/views/partials/map.html" />
         <option value="$PROJECT_DIR$/app/public/index.html" />
-        <option value="$PROJECT_DIR$/app/public/css/style.css" />
         <option value="$PROJECT_DIR$/webservice/index.js" />
         <option value="$PROJECT_DIR$/app/public/js/controllers.js" />
+        <option value="$PROJECT_DIR$/app/public/css/style.css" />
+        <option value="$PROJECT_DIR$/app/public/views/partials/test.html" />
+        <option value="$PROJECT_DIR$/app/public/js/controlersNew.js" />
+        <option value="$PROJECT_DIR$/app/public/js/controlers.js" />
       </list>
     </option>
   </component>
@@ -269,6 +323,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="partials" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="J14" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="J14" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="J14" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="J14" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="fonts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -325,6 +427,7 @@
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -383,9 +486,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25445706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25445706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -457,7 +560,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/app/public/js/controllersOLD.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="379" column="0" selection-start-line="379" selection-start-column="0" selection-end-line="379" selection-end-column="0" />
@@ -465,7 +568,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
+    <entry file="file://$PROJECT_DIR$/app/public/views/partials/mapOLD.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="60" column="25" selection-start-line="60" selection-start-column="25" selection-end-line="60" selection-end-column="25" />
@@ -491,7 +594,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/app/public/js/controllersOLD.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -499,7 +602,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
+    <entry file="file://$PROJECT_DIR$/app/public/views/partials/mapOLD.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -515,7 +618,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/app/public/js/controllersOLD.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -523,7 +626,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
+    <entry file="file://$PROJECT_DIR$/app/public/views/partials/mapOLD.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -535,13 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20134228">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -672,22 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3333335">
-          <caret line="355" column="0" selection-start-line="355" selection-start-column="0" selection-end-line="355" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.333333">
-          <caret line="158" column="18" selection-start-line="158" selection-start-column="18" selection-end-line="158" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webservice/users_schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -714,10 +794,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/js/controllersOLD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7777777">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.708333">
+          <caret line="594" column="28" selection-start-line="594" selection-start-column="28" selection-end-line="594" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/views/partials/mapOLD.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5833335">
+          <caret line="152" column="53" selection-start-line="152" selection-start-column="53" selection-end-line="152" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/public/views/partials/map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.833333">
+          <caret line="288" column="23" selection-start-line="288" selection-start-column="23" selection-end-line="288" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2088167">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4059406">
-          <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3387471">
+          <caret line="656" column="11" selection-start-line="656" selection-start-column="11" selection-end-line="656" selection-end-column="11" />
           <folding />
         </state>
       </provider>

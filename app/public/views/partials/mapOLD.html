@@ -1,0 +1,186 @@
+<!-- <div mass-autocomplete id="search-bar">
+        <input ng-model="dirty.value"
+               mass-autocomplete-item="autocomplete_options">
+      </div> -->
+
+    <div id="right-nav-lead" class="right-nav">
+        <div class="lead-story">{{leadStory}}</div>
+        <div class="user-info">{{userInfo}}</div>
+        <div class="lead-button">המשך קריאה</div>
+    </div>
+
+    <div id="right-nav-story" class="right-nav">
+        <div class="protester-image">{{protesterImage}}</div>
+        <div class="share-button"></div>
+        <div class="report-botton"></div>
+        <div class="lead-story">{{leadStory}}</div>
+        <div class="user-info">{{userInfo}}</div>
+        <div class="icons">
+              <div class="icon" id="icon1"></div>
+              <div class="icon" id="icon2"></div>
+              <div class="icon" id="icon3"></div>
+              <div class="icon" id="icon4"></div>
+              <div class="iconDesc" id="icon1Desc"></div>
+              <div class="iconDesc" id="icon2Desc"></div>
+              <div class="iconDesc" id="icon3Desc"></div>
+              <div class="iconDesc" id="icon4Desc"></div>
+        </div>
+        <div class="protest-story">{{protestStory}}</div>
+        <div class="story-button">לסיפור הבא</div>
+    </div>
+
+
+
+<!--form start-->
+
+    <div id="right-nav-form">
+      <form action="" enctype="multipart/form-data" >
+            <h2>הייתי כאן - הוסף אותי</h2>
+            <div id="close-form">X</div>
+
+            <div class="form" id="form-first-page">
+              <h3>ספר לנו על עצמך</h3>
+
+                שם פרטי:<br>
+                <input type="text" id="userName" ng-model="user.fn" required >
+                <br>
+
+                שם משפחה:<br>
+                <input type="text" id="userLastName" ng-model="user.ln" required>
+                <br>
+
+                גיל:<br>
+                <input type="text" ng-model="user.age" required>
+                <br>
+
+                מצב משפחתי:<br>
+                <select name="status11" ng-model="user.st11" required>
+                  <option value="single">רווק</option>
+                  <option value="married">נשוי</option>
+                  <option value="devorced">גרוש</option>
+                </select>
+                <br>
+
+                עיר מגורים:<br>
+                <input type="text"  ng-model="user.c11" required>
+                <br>
+
+                שכר דירה:<br>
+                <input type="text"  ng-model="user.r11" required>
+                <br>
+                <br>
+
+            </div>
+
+            <div class="form" id="form-second-page">
+              <h3>משהו השתנה ב 2016?</h3>
+
+                מצב משפחתי:<br>
+                <select name="status16" ng-model="user.st16" required>
+                  <option value="single">רווק</option>
+                  <option value="married">נשוי</option>
+                  <option value="devorced">גרוש</option>
+                </select>
+                <br>
+
+                עיר מגורים:<br>
+                <input type="text" ng-model="user.c16" required>
+                <br>
+
+                שכר דירה:<br>
+                <input type="text" ng-model="user.r16" required>
+                <br>
+            </div>
+
+            <div class="form" id="form-third-page">
+                <h3>אנחנו רוצים לשמוע את דעתך</h3>
+
+                המחאה של 2011 הצליחה?<br>
+                <select name="q1" ng-model="user.success" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
+                <br>
+
+                האם הממשלה תצליח להוריד רת מחירי הדירות?<br>
+                <select name="q2" ng-model="user.gov" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
+                <br>
+
+                לחץ ציבורי משפיע על מקבלי ההחלטות לדעתך?<br>
+                <select name="q3" ng-model="user.pressure" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
+                <br>
+
+
+                צריך לחדש את מחאת הדיור?<br>
+                <select name="q4" ng-model="user.renew" required>
+                  <option value="yes">כן</option>
+                  <option value="no">לא</option>
+                </select>
+                <br>
+
+<br>
+                איך אתה מרגיש כלפי העתיד?
+                <select name="q5" ng-model="user.happy" required>
+                    <option value="yes">כן</option>
+                    <option value="no">לא</option>
+                </select>
+                <br>
+
+            </div>
+
+            <div class="form" id="form-fourth-page">
+                <h3>עוד קצת וסיימנו</h3>
+                איך אתם רואים את המחאה היום?<br>
+                מה השתנה בישראל מאז - ומה השתנה אצלך?<br>
+                <textarea rows="6" cols="50" ng-model="user.conc">
+                </textarea>
+            </div>
+
+            <div class="form" id="form-fifth-page">
+                <h3>שלב אחרון!</h3>
+                שתף תמונה שלך שאתה הכי אוהב<br>
+                מתקופת המחאה החברתית
+                <input type='file' name="uploadImage" id="uploadImage" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                ngf-resize="{width: 100, height: 100}" />
+
+                <div id="image_upload_preview"></div>
+<br>
+                <!--שתף תמונה שלך-->
+                <!--<input type='file' id="inputProfileFile" />-->
+                <!--<div id="image_upload_profile_preview"></div>-->
+
+            </div>
+
+
+            <div id="form-prev-botton"><<br>הקודם</div>
+            <div class="yellow-botton" id="form-next-botton">><br>הבא</div>
+            <div class="yellow-botton" id="form-send-botton" ng-click="createMoment(file,user)" value="Save" >שלח</div>
+    </form>
+    </div>
+
+
+
+
+    <form id="campSelect" action="#" method="get">
+        <input list="camps" name="camp" placeholder="חפש מאהל ברחבי הארץ">
+          <datalist id="camps">
+            <!-- will be load with all the camps -->
+          </datalist>
+    </form>
+
+    <div id="map-canvas" data-ng-init="mapData()"></div>
+
+    <div class="fixed-bottom" id="graph-nav">
+        <button class="glyphicon glyphicon-menu-up toggle-button" ng-click="toggle()"></button>
+        <div id="fixed-bottom-title">השוואות אז והיום</div>
+        <div id="sankeyChart"></div>
+    </div>
+
+  </div>
