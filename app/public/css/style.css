@@ -244,6 +244,16 @@ height: 22px;
    background-image: url(../images/notRenew.svg);
  }
 
+.share{
+    background-image: url(../images/share.svg);
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 3;
+ }
+
  .red{
    color:#FF0000;
  }
@@ -351,7 +361,8 @@ height: 22px;
 #form-next-botton:hover,
 #form-prev-botton:hover,
 #form-send-botton:hover,
-#report-form:hover
+#report-form:hover,
+.share
 {
   cursor: pointer;
 }
