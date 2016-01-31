@@ -304,31 +304,23 @@
         </form>
 
         <div id="map-canvas" data-ng-init="mapData()"></div>
-<!--ng-click="loadGraphs()"-->
-        <div class="fixed-bottom" id="graph-nav" ng-click="loadGraphs()" >
-            <button class="glyphicon glyphicon-menu-up toggle-button" ng-click="toggle()" ></button>
-            <div id="fixed-bottom-title">האם המחאה ב-2011 הצליחה?</div>
-<!--tabs-->
-            <ul class="nav nav-pills nav-stacked col-sm-3 col-sm-push-9">
-                <li class="active d"><a ng-click="changeGraph('d')" data-toggle="tab">האם המחאה הצליחה?</a></li>
-                <li class="e"><a  ng-click="changeGraph('e')" data-toggle="tab">עיר מגורים</a></li>
-                <li class="f"><a  ng-click="changeGraph('f')"  data-toggle="tab">שכר דירה</a></li>
-            </ul>
-            <div class="tab-content col-sm-9  col-sm-pull-3">
-                <div class="tab-pane active" id="d">
-                    <div class="ageAxies">גילאים </div>
-                    <div id="chart_div" style="width: 90%; height: 90%;"></div>
 
-                </div>
-            <div class="fixed-bottom-back" ng-click="toggle()" ></div>
-
-                    <div id="sankey_basic" style="width: 90%; height: 90%;"></div>
-
-                            </div>
-                <div class="tab-pane" id="f"></div>
+        <div class="fixed-bottom" id="graph-nav">
+            <button class="glyphicon glyphicon-menu-up toggle-button fixed-bottom-title" ng-click="toggle()"></button>
+            <div id="fixed-bottom-title">השוואות אז והיום</div>
+            <div class="fixed-bottom-buttons">
+                <div class="fixed-bottom-button" ng-click="openGraph(1)" >השוואה בין שכר הדירה בשנת 2016 לעומת 2011</div>
+                <div class="fixed-bottom-button" ng-click="openGraph(2)">האם המחאה הצליחה?</div>
+                <div class="fixed-bottom-button" ng-click="openGraph(3)">האם הלחץ הציבורי משפיע על מקבלי ההחלטות?</div>
+                <div class="fixed-bottom-button" ng-click="openGraph(4)">השוואה בין ערי המגורים בשנת 2016 לעומת 2011</div>
+                <div class="fixed-bottom-button" ng-click="openGraph(5)">האם הממשלה תצליח להוריד את מחירי הדירות?</div>
+                <div class="fixed-bottom-button" ng-click="openGraph(6)">האם צריך לחדש את מחאת הדיור?</div>
+                <div class="clear"></div>
             </div>
+            <div class="fixed-bottom-back" ng-click="toggle()" ></div>
+            
+            <div id="sankeyChart"></div>
         </div>
 
         </div>
-
 

@@ -3,7 +3,7 @@ var usersControllers = angular.module('usersControllers', []);
 /*=============================================MAP CTRL============================================*/
 
 usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation','momentService','Upload','cookies',
-	function ($scope, $routeParams, $http, geolocation,momentService,Upload,cookies) {
+    function ($scope, $routeParams, $http, geolocation,momentService,Upload,cookies) {
 
         //global controller vars
         $scope.markers = [];
@@ -21,8 +21,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         var formPage = 0;
         var LeadsInterval;
         var noLeadClicked = true;
-        var	userLatitude;
-        var	userLongitude;
+        var userLatitude;
+        var userLongitude;
         var userCamp = "Rotshilds";
         var mapLatitude = 32.0635743;
         var mapLongitude = 34.7773985;
@@ -34,24 +34,24 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         var chartLine= false;
 
         //graphs
-		var ageProtestStack = [];  // age vs protest succeed graph
-		var googleChartScript ="https://www.gstatic.com/charts/loader.js";
-		//ages groups for protestSucceed graph
-		var a = [0, 0, 0]; 	// 0-18
-		var b = [0, 0, 0]; 	// 18-25
-		var c = [0, 0, 0]; 	// 26-30
-		var d = [0, 0, 0];	// 31-35
-		var e = [0, 0, 0];	// 36-40
-		var f = [0, 0, 0]; 	// 41-45
-		var g = [0, 0, 0]; 	// 46-50
-		var h = [0, 0, 0]; 	// 51-55
-		var i = [0, 0, 0]; 	// 56-60
-		var j = [0, 0, 0]; 	// 61-65
-		var k = [0, 0, 0]; 	// 66-70
-		var l = [0, 0, 0]; 	// 70+
+        var ageProtestStack = [];  // age vs protest succeed graph
+        var googleChartScript ="https://www.gstatic.com/charts/loader.js";
+        //ages groups for protestSucceed graph
+        var a = [0, 0, 0];  // 0-18
+        var b = [0, 0, 0];  // 18-25
+        var c = [0, 0, 0];  // 26-30
+        var d = [0, 0, 0];  // 31-35
+        var e = [0, 0, 0];  // 36-40
+        var f = [0, 0, 0];  // 41-45
+        var g = [0, 0, 0];  // 46-50
+        var h = [0, 0, 0];  // 51-55
+        var i = [0, 0, 0];  // 56-60
+        var j = [0, 0, 0];  // 61-65
+        var k = [0, 0, 0];  // 66-70
+        var l = [0, 0, 0];  // 70+
 
-		var city11Vs16Stack = []; // city 11 vs city 16
-		var rent11Vs16Stack = []; // rent 2011 Vs rent 2016
+        var city11Vs16Stack = []; // city 11 vs city 16
+        var rent11Vs16Stack = []; // rent 2011 Vs rent 2016
 
         $("#inputFile").change(function () {
             console.log("uploaded");
@@ -90,15 +90,15 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             });
         };
 
-		function isDefined(field) {
-			return angular.isDefined(field);
-		}
+        function isDefined(field) {
+            return angular.isDefined(field);
+        }
 
         function mapObjectsCoor(data){
 
             mapObjectsStack = [];
             mapObjectsCoorStack = [];
-			ageProtestStack = [];
+            ageProtestStack = [];
 
             angular.forEach(data, function(usersObj) {
                 angular.forEach(usersObj.users, function(singleUser) {
@@ -108,136 +108,136 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                         mapObjectsCoorStack.push(objCoor);
                         mapObjectsStack.push(singleUser);
                     }
-					//graph age & protest succeed
-					if (isDefined(singleUser.age) && isDefined(singleUser.protestSucceed)) {
-						var userAge = parseInt(singleUser.age);
-						var protestSucceed = singleUser.protestSucceed;
-						if (userAge > 0 && userAge < 19) {
-							if (protestSucceed) {
-								a[1]++;
-							}
-							else {
-								a[2]++;
-							}
-							a[0]++;
-						} else if (userAge > 18 && userAge < 26) {
-							if (protestSucceed) {
-								b[1]++;
-							}
-							else {
-								b[2]++;
-							}
-							b[0]++;
-						} else if (userAge > 25 && userAge < 31) {
-							if (protestSucceed) {
-								c[1]++;
-							}
-							else {
-								c[2]++;
-							}
-							c[0]++;
-						} else if (userAge > 30 && userAge < 36) {
-							if (protestSucceed) {
-								d[1]++;
-							}
-							else {
-								d[2]++;
-							}
-							d[0]++;
-						} else if (userAge > 35 && userAge < 41) {
-							if (protestSucceed) {
-								e[1]++;
-							}
-							else {
-								e[2]++;
-							}
-							e[0]++;
-						} else if (userAge > 40 && userAge < 46) {
-							if (protestSucceed) {
-								f[1]++;
-							}
-							else {
-								f[2]++;
-							}
-							f[0]++;
-						} else if (userAge > 45 && userAge < 51) {
-							if (protestSucceed) {
-								g[1]++;
-							}
-							else {
-								g[2]++;
-							}
-							g[0]++;
-						} else if (userAge > 50 && userAge < 56) {
-							if (protestSucceed) {
-								h[1]++;
-							}
-							else {
-								h[2]++;
-							}
-							h[0]++;
-						} else if (userAge > 55 && userAge < 61) {
-							if (protestSucceed) {
-								i[1]++;
-							}
-							else {
-								i[2]++;
-							}
-							i[0]++;
-						} else if (userAge > 60 && userAge < 66) {
-							if (protestSucceed) {
-								j[1]++;
-							}
-							else {
-								j[2]++;
-							}
-							j[0]++;
-						} else if (userAge > 65 && userAge < 71) {
-							if (protestSucceed) {
-								k[1]++;
-							}
-							else {
-								k[2]++;
-							}
-							k[0]++;
-						} else if (userAge > 70) {
-							if (protestSucceed) {
-								l[1]++;
-							}
-							else {
-								l[2]++;
-							}
-							l[0]++;
-						}
+                    //graph age & protest succeed
+                    if (isDefined(singleUser.age) && isDefined(singleUser.protestSucceed)) {
+                        var userAge = parseInt(singleUser.age);
+                        var protestSucceed = singleUser.protestSucceed;
+                        if (userAge > 0 && userAge < 19) {
+                            if (protestSucceed) {
+                                a[1]++;
+                            }
+                            else {
+                                a[2]++;
+                            }
+                            a[0]++;
+                        } else if (userAge > 18 && userAge < 26) {
+                            if (protestSucceed) {
+                                b[1]++;
+                            }
+                            else {
+                                b[2]++;
+                            }
+                            b[0]++;
+                        } else if (userAge > 25 && userAge < 31) {
+                            if (protestSucceed) {
+                                c[1]++;
+                            }
+                            else {
+                                c[2]++;
+                            }
+                            c[0]++;
+                        } else if (userAge > 30 && userAge < 36) {
+                            if (protestSucceed) {
+                                d[1]++;
+                            }
+                            else {
+                                d[2]++;
+                            }
+                            d[0]++;
+                        } else if (userAge > 35 && userAge < 41) {
+                            if (protestSucceed) {
+                                e[1]++;
+                            }
+                            else {
+                                e[2]++;
+                            }
+                            e[0]++;
+                        } else if (userAge > 40 && userAge < 46) {
+                            if (protestSucceed) {
+                                f[1]++;
+                            }
+                            else {
+                                f[2]++;
+                            }
+                            f[0]++;
+                        } else if (userAge > 45 && userAge < 51) {
+                            if (protestSucceed) {
+                                g[1]++;
+                            }
+                            else {
+                                g[2]++;
+                            }
+                            g[0]++;
+                        } else if (userAge > 50 && userAge < 56) {
+                            if (protestSucceed) {
+                                h[1]++;
+                            }
+                            else {
+                                h[2]++;
+                            }
+                            h[0]++;
+                        } else if (userAge > 55 && userAge < 61) {
+                            if (protestSucceed) {
+                                i[1]++;
+                            }
+                            else {
+                                i[2]++;
+                            }
+                            i[0]++;
+                        } else if (userAge > 60 && userAge < 66) {
+                            if (protestSucceed) {
+                                j[1]++;
+                            }
+                            else {
+                                j[2]++;
+                            }
+                            j[0]++;
+                        } else if (userAge > 65 && userAge < 71) {
+                            if (protestSucceed) {
+                                k[1]++;
+                            }
+                            else {
+                                k[2]++;
+                            }
+                            k[0]++;
+                        } else if (userAge > 70) {
+                            if (protestSucceed) {
+                                l[1]++;
+                            }
+                            else {
+                                l[2]++;
+                            }
+                            l[0]++;
+                        }
 
-						var ageProtest = {age: singleUser.age, protest: singleUser.protestSucceed};
-						ageProtestStack.push(ageProtest);
-					}
+                        var ageProtest = {age: singleUser.age, protest: singleUser.protestSucceed};
+                        ageProtestStack.push(ageProtest);
+                    }
 
-					//graph city 2011 Vs city 2016
-					if (isDefined(singleUser.city11) && isDefined(singleUser.city16)) {
+                    //graph city 2011 Vs city 2016
+                    if (isDefined(singleUser.city11) && isDefined(singleUser.city16)) {
                         if (singleUser.city16){
                             var detectCircle = singleUser.city16;
                             singleUser.city16 = detectCircle + " ";
                         }
-						var cityStack = {city11: singleUser.city11, city16: singleUser.city16};
-						city11Vs16Stack.push(cityStack);
-					}
-					//graph rent 2011 Vs rent 2016
-					if (isDefined(singleUser.rent11 && singleUser.rent11 > 0) && isDefined(singleUser.rent16 && singleUser.rent16 > 0)) {
-						var rentStack = {rent11: singleUser.rent11, rent16: singleUser.rent16};
-						rent11Vs16Stack.push(rentStack);
-					}
+                        var cityStack = {city11: singleUser.city11, city16: singleUser.city16};
+                        city11Vs16Stack.push(cityStack);
+                    }
+                    //graph rent 2011 Vs rent 2016
+                    if (isDefined(singleUser.rent11 && singleUser.rent11 > 0) && isDefined(singleUser.rent16 && singleUser.rent16 > 0)) {
+                        var rentStack = {rent11: singleUser.rent11, rent16: singleUser.rent16};
+                        rent11Vs16Stack.push(rentStack);
+                    }
                 });
             });
 
             $scope.mapObjectsCoor = mapObjectsCoorStack;
             $scope.mapObjectsStack = mapObjectsStack;
 
-			//graphs
-			$scope.ageProtestStack = ageProtestStack;
-			$scope.city11Vs16Stack = city11Vs16Stack;
-			$scope.rent11Vs16Stack = rent11Vs16Stack;
+            //graphs
+            $scope.ageProtestStack = ageProtestStack;
+            $scope.city11Vs16Stack = city11Vs16Stack;
+            $scope.rent11Vs16Stack = rent11Vs16Stack;
 
 
             if($scope.mapObjectsStack != null){
@@ -246,10 +246,11 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 }
 
                 //intervaling between leads until a lead was clicked by the user
-                if(noLeadClicked){
-                    //init the first lead
+                if(!storyOpen){
+                    //init the first lead and clean google viewbubbles default
+                    //unwanted views
                     setTimeout(function(){
-                        randomLead =	Math.floor(Math.random() * ($scope.markers.length));
+                        randomLead =    Math.floor(Math.random() * ($scope.markers.length));
                         google.maps.event.trigger( $scope.markers[randomLead], 'mouseover' );
                         setTimeout(function(){
                             removeBubbleScroll();
@@ -259,7 +260,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
                     //intervaling between leadsevery 5 seconds
                     LeadsInterval = setInterval(function(){
-                        randomLead =	Math.floor(Math.random() * ($scope.markers.length));
+                        randomLead =    Math.floor(Math.random() * ($scope.markers.length));
                         google.maps.event.trigger( $scope.markers[randomLead], 'mouseover' );
                     },5000);
                 }
@@ -296,6 +297,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                         google.charts.load('current', {'packages':['corechart','sankey']});
                         google.charts.setOnLoadCallback(drawVisualization);
                         function drawVisualization() {
+                            debugger;
                             var data = google.visualization.arrayToDataTable([
                                 ['גיל', 'כן','' ,'לא'],
                                 ['1-18',a[1],0,a[2]],
@@ -361,28 +363,19 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 datas.addColumn('string', 'To');
                 datas.addColumn('number', 'Weight');
                 datas.addRows([
-                    [ 	$scope.city11Vs16Stack[0].city11, 	$scope.city11Vs16Stack[0].city16 , 4],
-                    [ 	$scope.city11Vs16Stack[1].city11, 	$scope.city11Vs16Stack[1].city16 , 1],
-                    [ 	$scope.city11Vs16Stack[2].city11, 	$scope.city11Vs16Stack[2].city16 , 4 ],
-                    [ 	$scope.city11Vs16Stack[7].city11, 	$scope.city11Vs16Stack[7].city16 , 2 ],
-                    [ 	$scope.city11Vs16Stack[8].city11, 	$scope.city11Vs16Stack[8].city16 , 3],
-                    [ 	$scope.city11Vs16Stack[9].city11, 	$scope.city11Vs16Stack[9].city16 , 4 ],
-                    [ 	$scope.city11Vs16Stack[10].city11, 	$scope.city11Vs16Stack[10].city16 , 4 ],
-                    [ 	$scope.city11Vs16Stack[11].city11, 	$scope.city11Vs16Stack[11].city16 , 7 ],
-                    [ 	$scope.city11Vs16Stack[12].city11, 	$scope.city11Vs16Stack[12].city16 , 1 ],
-                    [ 	$scope.city11Vs16Stack[13].city11, 	$scope.city11Vs16Stack[13].city16 , 2 ],
-                    [ 	$scope.city11Vs16Stack[14].city11, 	$scope.city11Vs16Stack[14].city16 , 3 ],
-                    [ 	$scope.city11Vs16Stack[15].city11, 	$scope.city11Vs16Stack[15].city16 , 3 ],
-                    [ 	$scope.city11Vs16Stack[16].city11, 	$scope.city11Vs16Stack[16].city16 , 4 ],
-                    [ 	$scope.city11Vs16Stack[17].city11, 	$scope.city11Vs16Stack[17].city16 , 6 ],
-                    [ 	$scope.city11Vs16Stack[18].city11, 	$scope.city11Vs16Stack[18].city16 , 7 ],
-                    [ 	$scope.city11Vs16Stack[19].city11, 	$scope.city11Vs16Stack[19].city16 , 8 ],
-                    [ 	$scope.city11Vs16Stack[20].city11, 	$scope.city11Vs16Stack[20].city16 , 8 ],
-                    [ 	$scope.city11Vs16Stack[21].city11, 	$scope.city11Vs16Stack[21].city16 , 1 ],
-                    [ 	$scope.city11Vs16Stack[3].city11, 	$scope.city11Vs16Stack[3].city16 , 6 ],
-                    [ 	$scope.city11Vs16Stack[4].city11, 	$scope.city11Vs16Stack[4].city16 , 2 ],
-                    [ 	$scope.city11Vs16Stack[5].city11, 	$scope.city11Vs16Stack[5].city16 , 6 ],
-                    [ 	$scope.city11Vs16Stack[6].city11, 	$scope.city11Vs16Stack[6].city16 , 7 ],
+                    [   $scope.city11Vs16Stack[0].city11,   $scope.city11Vs16Stack[0].city16 , 4],
+                    [   $scope.city11Vs16Stack[1].city11,   $scope.city11Vs16Stack[1].city16 , 1],
+                    [   $scope.city11Vs16Stack[2].city11,   $scope.city11Vs16Stack[2].city16 , 4 ],
+
+                    [   $scope.city11Vs16Stack[3].city11,   $scope.city11Vs16Stack[3].city16 , 7],
+                    [   $scope.city11Vs16Stack[4].city11,   $scope.city11Vs16Stack[4].city16 , 1],
+                    [   $scope.city11Vs16Stack[5].city11,   $scope.city11Vs16Stack[5].city16 , 2 ],
+
+                    [   $scope.city11Vs16Stack[7].city11,   $scope.city11Vs16Stack[7].city16 , 2 ],
+                    [   $scope.city11Vs16Stack[8].city11,   $scope.city11Vs16Stack[8].city16 , 3],
+                    [   $scope.city11Vs16Stack[9].city11,   $scope.city11Vs16Stack[9].city16 , 1],
+                
+
 
                 ]);
 
@@ -408,7 +401,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             }
         };
 
-
         var createMarker = function (info , obj){
 
             var path = '../../images/tag-on-map.svg';
@@ -427,30 +419,45 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 map: $scope.map,
                 position: new google.maps.LatLng(info.latitude, info.longitude),
                 info: info,
-                //animation: google.maps.Animation.DROP, //could be cool option
                 content: $scope.momObj,
                 icon: markerImage,
                 id: iterator
             });
 
+            infoBubble = new InfoBubble({
+                maxWidth: 200,
+                shadowStyle: 0,
+                padding: 0,
+                backgroundColor: 'transparent',
+                borderRadius: 1,
+                arrowSize: 0,
+                borderWidth: 1,
+                borderColor: 'transparent',
+                disableAutoPan: true,
+                hideCloseButton: true,
+                backgroundClassName: 'bubbleBody'
+            });
+
+
             if(angular.isDefined(marker)){
                 $scope.markers.push(marker);
             }
 
-            google.maps.event.addListener(marker, 'click', function(){
-                storyOpen = true;
-                $scope.rightNavContentStory(marker);
-
-
                 var profileImage;
+                console.log(marker.content.userprofileImage);
                 if(!angular.isDefined(marker.content.userprofileImage)||
                    marker.content.userprofileImage == "profileImg" ||
-                   marker.content.userprofileImage == "" ){
+                   marker.content.userprofileImage == "link" ){
                    profileImage = "../../images/pixel.png";
                 }
                 else{
-                    profileImage =marker.content.userprofileImage;
+                    profileImage = marker.content.userprofileImage;
                 }
+
+            google.maps.event.addListener(marker, 'click', function(){
+                storyOpen = true; 
+                noLeadClicked = false;
+                $scope.rightNavContentStory(marker);
 
                 infoBubble.setContent(
                     "<div class='infoBubbleClicked'>"+
@@ -464,23 +471,10 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 $("#right-nav-story").css( "display", "block" );
                 $("#graph-nav").animate({bottom: '-500px'});
                 $("#right-nav-story").animate({right: '0px'});
-                noLeadClicked = false;
+
                 clearInterval(LeadsInterval);
                 google.maps.event.trigger( $scope.markers[randomLead], 'mouseout' );
 
-            });
-
-            infoBubble = new InfoBubble({
-                maxWidth: 2000,
-                shadowStyle: 0,
-                padding: 0,
-                backgroundColor: 'transparent',
-                borderRadius: 5,
-                arrowSize: 0,
-                borderWidth: 1,
-                borderColor: 'transparent',
-                disableAutoPan: true,
-                backgroundClassName: 'bubbleBody'
             });
 
             google.maps.event.addListener(marker,'mouseover',function(){
@@ -489,16 +483,16 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     infoBubble.setContent(
                         "<div class='infoBubble gm-style-iw'>"+
                             "<div class='infoBubblePic'>"+
-                                "<img src='"+ /*marker.content.userprofileImage*/  "../../images/pixel.png" + "'/>"+
+                                "<img src='"+ profileImage + "'/>"+
                             "</div>"+
                             "<div class='infoBubbleContent'>"+
                                 "<p class='infoBubbleHeader'>"+
                                     marker.content.userFname +" "+
                                     marker.content.userLname +" | "+
                                     marker.content.age +" | "+
-                                    marker.content.city16 +
+                                    marker.content.city16 +                           
                                 "</p>"+
-                                "<p class='infoBubbleStory'>"+
+                                "<p class='infoBubbleStory'>"+ 
                                  calculateStoryLengh(marker.content.conclusion)
                                 +"</p>"+
                            "</div>" +
@@ -507,9 +501,9 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     removeBubbleScroll();
                }
             });
-
+                       
             google.maps.event.addListener(marker,'mouseout',function(){
-                if(noLeadClicked){
+                if(!storyOpen){
                     infoBubble.close($scope.map, marker);
                 }
             });
@@ -524,7 +518,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
         //on click on the map a marker for share or add new will added to the map
         function placeMarker(latLng,map) {
-            if(!newMarkerAdded){
+            if(!newMarkerAdded && !storyOpen){
 
                 newMarkerAdded = true;
 
@@ -554,12 +548,12 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     map:map
                 });
 
-                infoBubble = new InfoBubble({
+                var infoBubble = new InfoBubble({
                     shadowStyle: 0,
                     padding: 0,
                     backgroundColor: 'transparent',
-                    borderRadius: 5,
                     arrowSize: 0,
+                    borderRadius: 1,
                     borderWidth: 1,
                     borderColor: 'transparent',
                     disableAutoPan: true,
@@ -570,14 +564,26 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 $scope.markers.push(newMarker);
             }
 
+                var profileImage;
+                
+                if(!angular.isDefined(marker.content.userprofileImage)||
+                   marker.content.userprofileImage == "profileImg" ||
+                   marker.content.userprofileImage == "link" ){
+                   profileImage = "../../images/pixel.png";
+                }
+                else{
+                    profileImage = marker.content.userprofileImage;
+                }
+
             google.maps.event.addListener(newMarker, 'click', function(){
                 storyOpen = true;
                 rightNavContentStoryCurrent();
 
+
                 infoBubble.setContent(
                     "<div class='infoBubbleClicked'>"+
                         "<div class='infoBubblePicClicked'>"+
-                            "<img src='"+"../../images/pixel.png"+"'/>"+
+                            "<img src='"+profileImage+"'/>"+
                         "</div>"+
                     "</div>");
 
@@ -599,14 +605,14 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     infoBubble.setContent(
                         "<div class='infoBubble'>"+
                             "<div class='infoBubblePic'>"+
-                                "<img src='"+ /*marker.content.userprofileImage*/ "../../images/pixel.png" + "'/>"+
+                                "<img src='"+ profileImage + "'/>"+
                             "</div>"+
                             "<div class='infoBubbleContent'>"+
                                 "<p class='infoBubbleHeader'>"+
                                     $scope.user.fn  +" "+
                                     $scope.user.ln  +" | "+
                                     $scope.user.age +" | "+
-                                    $scope.user.c16 +
+                                    $scope.user.c16 +                           
                                 "</p>"+
                                 "<p class='infoBubbleStory'>"
                                 + calculateStoryLengh( $scope.user.conc)
@@ -625,11 +631,9 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 }
             });
 
-            //map.setCenter(new google.maps.
-            //   LatLng(marker.getPosition().lat(), marker.getPosition().lng()+1));
-
             }
         }
+
 
         function calculateStoryLengh(story){
             if(story.length<100){return story;}
@@ -877,7 +881,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         });
 
 
-			$scope.createMoment = function (file,user,callback){
+            $scope.createMoment = function (file,user,callback){
                 if (angular.isDefined(user)) {
                     $scope.upload($scope.file,$scope.user);
                 }
@@ -923,82 +927,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             //    });
             //};
 
-        //on click on the map a marker for share or add new will added to the map
-        //--todo-- the form and the buttoms beside the maker--//
-        function placeMarker(latLng,map) {
-            if(!newMarkerAdded){
-
-                $("#right-nav-form").css( "display", "block" );
-                //animated version
-                $("#right-nav-form").animate({right: '0px'});
-                $("#right-nav-lead").animate({top: '-1500px'});
-                $("#right-nav-story").animate({right: '-1000px'});
-                $("#graph-nav").animate({bottom: '-500px'});
-
-                iterator++;
-                var markerImage = new google.maps.MarkerImage(
-                    '../../images/tag-on-map.svg',
-                    new google.maps.Size(13,13), //size
-                    null, //origin
-                    null, //anchor
-                    new google.maps.Size(13,13) //scale
-                );
-                newMarker = new google.maps.Marker({
-                    position: latLng,
-                    animation: google.maps.Animation.DROP, //could be cool option
-                    icon: markerImage,
-                    id: iterator,
-                    map:map
-                });
-
-
-                var tags1 = '<div class="panel panel-default" ng-controller="MomentsListCtrl" ><div class="panel-heading panelHeadTakeMe panel-font" style =" ';
-                var tags11 = '">';
-                var tags2 = '</div><div class="panel-body panelBodyTakeMe" style =" ';
-                var tags22 = '"><p>';
-                var tags3 = '</p><a class=" panelBtntakeMe" role="button" href="#/moments/';
-                var tags4 ='"style=" ';
-                var tags444 = '">Take me</a></div><div class= "class="panel-footer panelFooterTakeMe panel-font " style=" ';
-                var tags44 = '<div class= "bodyPanelCnt " style =" ';
-                var tags5= '</div></div>';
-
-                infoBubble = new InfoBubble({
-                    shadowStyle: 0,
-                    padding: 0,
-                    backgroundColor: 'transparent',
-                    borderRadius: 5,
-                    arrowSize: 0,
-                    borderWidth: 1,
-                    borderColor: 'transparent',
-                    disableAutoPan: true,
-                    backgroundClassName: 'bubbleBody'
-                });
-
-                google.maps.event.addListener(newMarker,'mouseover',function(){
-                    //infoWindow.open($scope.map, newMarker);
-                    infoBubble.setContent( tags1   + tags11 + tags2 + tags22 + tags3 +  tags4 + tags444 + tags11 + tags5);
-                    infoBubble.open($scope.map, newMarker);
-
-                });
-
-                google.maps.event.addListener(newMarker,'mouseout',function(){
-                    infoWindow.close($scope.map, newMarker);
-                });
-
-
-                google.maps.event.addListener(infoWindow, 'domready', function() {
-                    var l = $('.user-marker-window').parent().parent().parent().siblings();
-                    for (var i = 0; i < l.length; i++) {
-                        if($(l[i]).css('z-index') == 'auto') {
-                            $(l[i]).css('border-radius', '16px 16px 16px 16px');
-                            $(l[i]).css('border', '2px solid red');
-                        }
-                    }
-                });
-                //map.setCenter(new google.maps.LatLng(marker.getPosition().lat(), marker.getPosition().lng()+1));
-                newMarkerAdded = true;
-            }
-        }
 
         function nextPage(){
 
@@ -1254,5 +1182,37 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             $('.share').snsShare('שתף אותי', 'http://j14app.herokuapp.com/');
         }
 
+
+        //loading from json and adding all the camps the the select option on the top
+        var campsList;
+        $http.get('../json/camps.json').then(function(json){
+            for(var i=0 ;i<json.data.camps.length;i++){
+                if(i==0){
+                    campsList +="<option selected=\"selected\" value=\""+json.data.camps[i].name+","
+                                                    +json.data.camps[i].lat+","
+                                                    +json.data.camps[i].lng+"\">"
+                                                    +json.data.camps[i].camp+"</option>";
+                }
+                else{
+                    campsList +="<option value=\""+json.data.camps[i].name+","
+                                                +json.data.camps[i].lat+","
+                                                +json.data.camps[i].lng+"\">"
+                                                +json.data.camps[i].camp+"</option>";
+                }      
+            }
+            $("#campsList").append(campsList);
+        });
+
+        $scope.changeCamp = function(newCamp){
+            var res = newCamp.split(",");
+            userCamp = res[1];
+            map.panTo(new google.maps.LatLng(res[1],res[2]));
+        }
+
+        $("#close-intro").click(function() {
+            $("#bgvid").animate({top: '-1500px'});
+            $("#close-intro").css( "display", "none" );
+            setTimeout(function(){$("#map-canvas").css({"zIndex": 0});},1000);
+        });
 
     }]);
