@@ -7,17 +7,21 @@ var usersAction;
 var newObj;
 
 mongoose.connection.once('open',function(){
-	var Users = this.model('usersM');
-	var query = Users.find();
-	query.where('userId');
+    var Users = this.model('usersM');
+    var query = Users.find();
+    query.where('userId');
 
-query.exec(function(err, docs){
-	usersAction = docs;
-	console.log("docs: " + usersAction);
-    mongoose.disconnect();
-	return usersAction;
-	});
-});
+    query.exec(function(err, docs){
+        usersAction = docs;
+        console.log("docs: " + usersAction);
+        mongoose.disconnect();
+        return usersAction;
+    });});
+
+var bringAllUsers = function(){
+
+};
+
 
 exports.getData = function(){
 	return usersAction;
@@ -69,7 +73,18 @@ exports.createMoment = function(_lr,_admin,_fn, _ln, _age, _r11,_r16,_st11,_st16
         };
         Users.findOneAndUpdate(query, doc, options).then(function(response) {
             if (response) {
-                mongoose.disconnect();
+
+                var Users = mongoose.model('usersM');
+                var query = Users.find();
+                query.where('userId');
+
+                query.exec(function(err, docs){
+                    usersAction = docs;
+                    console.log("docs: " + usersAction);
+                    mongoose.disconnect();
+                    return usersAction;
+                });
+
                 console.log("found camp in that name!");
                 callback(response);
             }
@@ -81,7 +96,6 @@ exports.createMoment = function(_lr,_admin,_fn, _ln, _age, _r11,_r16,_st11,_st16
 
     });
 };
-
 exports.getObj = function(){
     return newObj;
 };

@@ -1,15 +1,11 @@
-var j14App = angular.module("j14App",['ngRoute','usersControllers','MassAutoComplete','geolocation','nvd3','ngFileUpload']);//first of all we make the module
+var j14App = angular.module("j14App",['ngRoute','usersControllers','MassAutoComplete','geolocation','nvd3','ngFileUpload','ngCookie']);//first of all we make the module
 console.log("camp.js");
 
 j14App.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-        when('/welcome', {
+      when('/welcome', {
         templateUrl: 'views/partials/welcome-page.html',
-        controller: 'UsersListCtrl'
-      }).
-      when('/map/:userId', {
-        templateUrl: 'views/partials/single.html',
         controller: 'MapCtrl'
       }).
       when('/map', {
@@ -18,15 +14,7 @@ j14App.config(['$routeProvider',
       }).
       when('/list', {
         templateUrl: 'views/partials/list.html',
-        controller: 'UsersListCtrl'
-      }).
-      when('/graph', {
-        templateUrl: 'views/partials/graph.html',
-        controller: 'UsersListCtrl'
-      }).
-      when('/admin-data-validation', {
-        templateUrl: 'views/partials/admin-data-validation.html',
-        controller: 'UsersListCtrl'
+        controller: 'MapCtrl'
       }).
       otherwise({
         redirectTo: '/map'
@@ -35,8 +23,6 @@ j14App.config(['$routeProvider',
 
 j14App.factory('momentService',['$http',function($http){
   var momentService = {};
-
-
         momentService.createMoment = function(_fn, _ln, _age, _st11,_st16 ,_c11,_c16,_r11,_r16,_happy,_protestSucceed,_gov,_social,_renew,_conc,_lan,_lat,callback)  {
 
             return $http({
@@ -71,3 +57,16 @@ j14App.factory('momentService',['$http',function($http){
   };
   return momentService;
 }]);
+
+
+//
+//
+//j14App.factory('cookieService','$http','cookies',[function($http){
+//  var cookieService = {};
+//    cookieService.LoggedInUser = {};
+//
+//    cookieService.savedLoginUser = function(user){
+//        cookieService.LoggedInUser = user;
+//  };
+//    return cookieService;
+//}]);

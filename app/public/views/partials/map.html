@@ -3,7 +3,8 @@
             <div id="close-story"></div>
             <div id="report-form"><label title="דווח"></label></div>
             <div class="protester-image">{{protesterImage}}</div>
-            <div class="share-button"></div>
+            <div class="share-button" id="share_button"></div>
+
             <div class="lead-story">{{userName}}</div>
             <div class="user-info">{{userInfo}}</div>
 
@@ -20,9 +21,16 @@
 
             <div class="protest-story">{{protestStory}}</div>
             <div id="defaultUserImage"></div>
-            <div class="share"></div>
+
+                    <div class="share facebook" ng-click="shareToFB()" data-sns="facebook" data-link="http://j14app.herokuapp.com/#/map"></div>
+
+            <!--<div-->
+                    <!--class="fb-like share"-->
+                    <!--data-share="true"-->
+                    <!--data-width="450"-->
+                    <!--data-show-faces="true">-->
+            <!--</div>-->
             <div class="clear"></div>
-            <!-- <div class="story-button">לסיפור הבא</div> -->
         </div>
 
         <!--form start-->
@@ -32,13 +40,12 @@
                 <h2 class="form-h2">הייתי כאן - הוסף אותי</h2>
                 <div id="close-form"></div>
 
-
                 <!-- form first page -->
                 <div class="form" id="form-first-page">
 
                     <div class="frame">
                         <div class="cloud"><img src="../../images/cloud.svg"/></div>
-                        <div class="cloud cloud_on_top"><img src="../images//cloud.svg"/></div>
+                        <div class="cloud cloud_on_top"><img src="../../images/cloud.svg"/></div>
                         <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
                         <div class="horizon"><img src="../../images/horizon.svg"/> </div>
                         <div class="tree1"><img src="../../images/treebig.svg"/>  </div>
@@ -71,7 +78,7 @@
 
                     <div class="frame">
                         <div class="cloud"><img src="../../images/cloud.svg"/></div>
-                        <div class="cloud cloud_on_top"><img src="../images//cloud.svg"/></div>
+                        <div class="cloud cloud_on_top"><img src="../../images/cloud.svg"/></div>
                         <div class="cloud_solo"><img src="../../images/cloud.svg"/></div>
                         <div class="horizon"><img src="../../images/horizon.svg"/> </div>
                         <div class="tree1"><img src="../../images/treebig.svg"/>  </div>
@@ -117,8 +124,6 @@
                     </div>
                 </div>
 
-
-
                 <!-- form third page -->
                 <div class="form" id="form-third-page">
 
@@ -145,7 +150,7 @@
                     <span class="error" ng-show="form.status16.$error.required">*</span>
                     <br>
                     עיר מגורים:<br>
-                    <input type="text" list="cities16input" name="cities16input" id="cities16input"
+                    <input type="text" list="cities16" name="cities16input" id="cities16input"
                            ng-model="user.c16" ng-init="user.c16=''" required >
                     <span class="error" ng-show="form.cities16input.$error.required">*</span>
                     <datalist id="cities16">
@@ -259,7 +264,7 @@
 
                     <input type='file' name="uploadImage" id="uploadImage" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
                            ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                           ngf-resize="{width: 100, height: 100}" />
+                           ngf-resize="{width: 300, height: 300}" />
 
                     <div id="image_upload_preview"></div>
 
@@ -290,11 +295,31 @@
         </form>
 
         <div id="map-canvas" data-ng-init="mapData()"></div>
+<!--ng-click="loadGraphs()"-->
+        <div class="fixed-bottom" id="graph-nav" ng-click="loadGraphs()" >
+            <button class="glyphicon glyphicon-menu-up toggle-button" ng-click="toggle()" ></button>
+            <div id="fixed-bottom-title">האם המחאה ב-2011 הצליחה?</div>
+<!--tabs-->
+            <ul class="nav nav-pills nav-stacked col-sm-3 col-sm-push-9">
+                <li class="active d"><a ng-click="changeGraph('d')" data-toggle="tab">האם המחאה הצליחה?</a></li>
+                <li class="e"><a  ng-click="changeGraph('e')" data-toggle="tab">עיר מגורים</a></li>
+                <li class="f"><a  ng-click="changeGraph('f')"  data-toggle="tab">שכר דירה</a></li>
+            </ul>
+            <div class="tab-content col-sm-9  col-sm-pull-3">
+                <div class="tab-pane active" id="d">
+                    <div class="ageAxies">גילאים </div>
+                    <div id="chart_div" style="width: 90%; height: 90%;"></div>
 
-        <div class="fixed-bottom" id="graph-nav">
-            <button class="glyphicon glyphicon-menu-up toggle-button" ng-click="toggle()"></button>
-            <div id="fixed-bottom-title">השוואות אז והיום</div>
-            <div id="sankeyChart"></div>
+                </div>
+                <div class="tab-pane" id="e">
+
+                    <div id="sankey_basic" style="width: 90%; height: 90%;"></div>
+
+                            </div>
+                <div class="tab-pane" id="f"></div>
+            </div>
         </div>
 
         </div>
+
+

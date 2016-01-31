@@ -55,12 +55,12 @@ app.post('/map', function(req, res) {
     var dataFile = {};
     var form = new formidable.IncomingForm();
 
-    form.parse(req, function(error, fields, files) {
+    form.parse(req, function(error, fields,files) {
         console.log('Parsing files from the user');
 
         dataForm = fields;
         dataFile = JSON.stringify(files);
-        console.log(" FILESSSSS " + dataForm);
+        console.log(" FILESSSSS " + JSON.stringify(dataForm));
         console.log(" DATA FILE " + dataFile);
 
         if(!isEmptyObject(files)){
@@ -85,7 +85,7 @@ app.post('/map', function(req, res) {
 
                 if (!isEmptyObject(result.url)) url = result.url;
                 console.log("URL : " + url);
-                console.log("dataForm " + dataForm["user[age]"] + " ##############");
+                console.log("dataForm " + dataForm["user[age]"]);
 
                 usersAction.createMoment(1, true, dataForm["user[fn]"],dataForm["user[ln]"], dataForm["user[age]"],
                     dataForm["user[r11]"],
@@ -102,8 +102,8 @@ app.post('/map', function(req, res) {
                     url,
                     "profileImg",
                     dataForm["user[conc]"],
-                    "lat",
-                    "long", function(docs) {
+                    dataForm["lan"],
+                    dataForm["lat"], function(docs) {
                         if(docs){
                             res.status(200).send(JSON.stringify(docs));
                         }
@@ -130,9 +130,8 @@ app.post('/map', function(req, res) {
                     url,
                     "profileImg",
                     dataForm["user[conc]"],
-                    "lat",
-                    "long",
-                    function(docs){
+                    dataForm["lan"],
+                    dataForm["lat"], function(docs) {
                         if(docs){
                             res.status(200).send(JSON.stringify(docs));
                         }

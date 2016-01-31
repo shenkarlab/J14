@@ -1,23 +1,14 @@
 var usersControllers = angular.module('usersControllers', []);
-/*================================USERS and GRAPHS CTRL============================================*/
-
-usersControllers.controller('UsersListCtrl', ['$scope', '$http','$routeParams',
-    function ($scope, $http, $routeParams) {
-        $http.get("http://localhost:3000/get").success(function (data) {
-            $scope.usersObj = data;
-
-        });
-    }
-]);
 
 /*=============================================MAP CTRL============================================*/
 
-usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation','momentService','Upload',
-	function ($scope, $routeParams, $http, geolocation,momentService,Upload) {
+usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geolocation','momentService','Upload','cookies',
+	function ($scope, $routeParams, $http, geolocation,momentService,Upload,cookies) {
 
-        //gloabal controller vars
+        //global controller vars
         $scope.markers = [];
         $scope.userMaster = {};
+        $scope.mapObjects = {};
         var map;
         var newMarkerAdded = false;
         var newMarker;
@@ -32,7 +23,30 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         var	userLatitude;
         var	userLongitude;
         var server = "http://localhost:3000/";
+        var loadedOnce = false;
+        var chartAge = false;
+        var chartSankey= false;
+        var chartLine= false;
 
+        //graphs
+		var ageProtestStack = [];  // age vs protest succeed graph
+		var googleChartScript ="https://www.gstatic.com/charts/loader.js";
+		//ages groups for protestSucceed graph
+		var a = [0, 0, 0]; 	// 0-18
+		var b = [0, 0, 0]; 	// 18-25
+		var c = [0, 0, 0]; 	// 26-30
+		var d = [0, 0, 0];	// 31-35
+		var e = [0, 0, 0];	// 36-40
+		var f = [0, 0, 0]; 	// 41-45
+		var g = [0, 0, 0]; 	// 46-50
+		var h = [0, 0, 0]; 	// 51-55
+		var i = [0, 0, 0]; 	// 56-60
+		var j = [0, 0, 0]; 	// 61-65
+		var k = [0, 0, 0]; 	// 66-70
+		var l = [0, 0, 0]; 	// 70+
+
+		var city11Vs16Stack = []; // city 11 vs city 16
+		var rent11Vs16Stack = []; // rent 2011 Vs rent 2016
 
         $("#inputFile").change(function () {
             console.log("uploaded");
@@ -53,22 +67,8 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
         $http.get("http://localhost:3000/get").success(function (data) {
             $scope.mapObjects = data;
-            // $scope.camps = [];
-            // 			angular.forEach(data, function(object) {
-            // 					if($scope.camps.length <= 0) {
-            // 						$scope.camps.push({id:object.campName,coor:object.centerCoor});
-            // 					}
-            // 					else{
-            // 						angular.forEach($scope.camps, function(singleCamp){
-            // 							if(angular.isDefined(singleCamp.id)){
-            // 								if (singleCamp.id.indexOf(object.campName) === -1) {
-            // 										$scope.camps.push({id:object.campName,coor:object.centerCoor});
-            // 								}
-            // 							}
-            // 						});
-            // 					}
-            // 		});
         });
+
 
         $scope.mapData = function (){
             $http.get('../json/map.json').then(function(data){
@@ -79,29 +79,161 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     //default Rotchild blvd
                     $scope.coords ={latitude:32.0635743,longitude:34.7773985};
                     initialize($scope.mapStyle.data, $scope.coords);
-                    setTimeout(function(){mapObjectsCoor($scope.mapObjects);},1000);
+                    setTimeout(function(){
+                        mapObjectsCoor($scope.mapObjects);},1000);
                 });
             });
         };
 
+		function isDefined(field) {
+			return angular.isDefined(field);
+		}
 
         function mapObjectsCoor(data){
+
             mapObjectsStack = [];
             mapObjectsCoorStack = [];
+			ageProtestStack = [];
 
             angular.forEach(data, function(usersObj) {
                 angular.forEach(usersObj.users, function(singleUser) {
                     if(angular.isDefined(singleUser.tentCoor)){
-                        var objCoor = { latitude: singleUser.tentCoor[0].latitude ,
+                        var objCoor = { latitude: singleUser.tentCoor[0].latitude,
                             longitude: singleUser.tentCoor[0].longitude};
                         mapObjectsCoorStack.push(objCoor);
                         mapObjectsStack.push(singleUser);
                     }
+					//graph age & protest succeed
+					if (isDefined(singleUser.age) && isDefined(singleUser.protestSucceed)) {
+						var userAge = parseInt(singleUser.age);
+						var protestSucceed = singleUser.protestSucceed;
+						if (userAge > 0 && userAge < 19) {
+							if (protestSucceed) {
+								a[1]++;
+							}
+							else {
+								a[2]++;
+							}
+							a[0]++;
+						} else if (userAge > 18 && userAge < 26) {
+							if (protestSucceed) {
+								b[1]++;
+							}
+							else {
+								b[2]++;
+							}
+							b[0]++;
+						} else if (userAge > 25 && userAge < 31) {
+							if (protestSucceed) {
+								c[1]++;
+							}
+							else {
+								c[2]++;
+							}
+							c[0]++;
+						} else if (userAge > 30 && userAge < 36) {
+							if (protestSucceed) {
+								d[1]++;
+							}
+							else {
+								d[2]++;
+							}
+							d[0]++;
+						} else if (userAge > 35 && userAge < 41) {
+							if (protestSucceed) {
+								e[1]++;
+							}
+							else {
+								e[2]++;
+							}
+							e[0]++;
+						} else if (userAge > 40 && userAge < 46) {
+							if (protestSucceed) {
+								f[1]++;
+							}
+							else {
+								f[2]++;
+							}
+							f[0]++;
+						} else if (userAge > 45 && userAge < 51) {
+							if (protestSucceed) {
+								g[1]++;
+							}
+							else {
+								g[2]++;
+							}
+							g[0]++;
+						} else if (userAge > 50 && userAge < 56) {
+							if (protestSucceed) {
+								h[1]++;
+							}
+							else {
+								h[2]++;
+							}
+							h[0]++;
+						} else if (userAge > 55 && userAge < 61) {
+							if (protestSucceed) {
+								i[1]++;
+							}
+							else {
+								i[2]++;
+							}
+							i[0]++;
+						} else if (userAge > 60 && userAge < 66) {
+							if (protestSucceed) {
+								j[1]++;
+							}
+							else {
+								j[2]++;
+							}
+							j[0]++;
+						} else if (userAge > 65 && userAge < 71) {
+							if (protestSucceed) {
+								k[1]++;
+							}
+							else {
+								k[2]++;
+							}
+							k[0]++;
+						} else if (userAge > 70) {
+							if (protestSucceed) {
+								l[1]++;
+							}
+							else {
+								l[2]++;
+							}
+							l[0]++;
+						}
+
+						var ageProtest = {age: singleUser.age, protest: singleUser.protestSucceed};
+						ageProtestStack.push(ageProtest);
+					}
+
+					//graph city 2011 Vs city 2016
+					if (isDefined(singleUser.city11) && isDefined(singleUser.city16)) {
+                        if (singleUser.city16){
+                            var detectCircle = singleUser.city16;
+                            singleUser.city16 = detectCircle + " ";
+                        }
+						var cityStack = {city11: singleUser.city11, city16: singleUser.city16};
+						city11Vs16Stack.push(cityStack);
+					}
+					//graph rent 2011 Vs rent 2016
+					if (isDefined(singleUser.rent11 && singleUser.rent11 > 0) && isDefined(singleUser.rent16 && singleUser.rent16 > 0)) {
+						var rentStack = {rent11: singleUser.rent11, rent16: singleUser.rent16};
+						rent11Vs16Stack.push(rentStack);
+					}
                 });
             });
 
             $scope.mapObjectsCoor = mapObjectsCoorStack;
             $scope.mapObjectsStack = mapObjectsStack;
+
+			//graphs
+			$scope.ageProtestStack = ageProtestStack;
+			$scope.city11Vs16Stack = city11Vs16Stack;
+			$scope.rent11Vs16Stack = rent11Vs16Stack;
+
 
             if($scope.mapObjectsStack != null){
                 for (i = 0; i < $scope.mapObjectsCoor.length; i++){
@@ -119,12 +251,154 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     //intervaling between leadsevery 5 seconds
                     LeadsInterval = setInterval(function(){
                         randomLead =	Math.floor(Math.random() * ($scope.markers.length));
-                        //console.log($scope.markers[randomLead]);
                         $scope.rightNavContentLead($scope.markers[randomLead]);
                     },"5000");
                 }
             }
         }
+
+
+		// a function to get the script asynchronously
+		function getScript(url, success) {
+            if(!loadedOnce){
+                var script = document.createElement('script');
+                script.src = url;
+                var head = document.getElementsByTagName('head')[0],
+                    done = false;
+                // Attach handlers for all browsers
+                script.onload = script.onreadystatechange = function() {
+                    if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+                        done = true;
+                        success();
+                        script.onload = script.onreadystatechange = null;
+                        head.removeChild(script);
+                    }
+                };
+                head.appendChild(script);
+            }
+            return false;
+        }
+
+		$scope.loadGraphs = function() {
+            if(!loadedOnce){
+                $.getScript(
+                    googleChartScript,
+                    function() {
+                            google.charts.load('current', {'packages':['corechart','sankey']});
+                            google.charts.setOnLoadCallback(drawVisualization);
+                            function drawVisualization() {
+                                var data = google.visualization.arrayToDataTable([
+                                    ['גיל', 'כן','' ,'לא'],
+                                    ['1-18',a[1],0,a[2]],
+                                    ['19-25',b[1],0,b[2]],
+                                    ['26-30',c[1],0,c[2]],
+                                    ['31-35',d[1],0,d[2]],
+                                    ['36-40',e[1],0,e[2]],
+                                    ['41-45',f[1],0,f[2]],
+                                    ['46-50',g[1],0,g[2]],
+                                    ['51-55',h[1],0,h[2]],
+                                    ['56-60',i[1],0,i[2]],
+                                    ['61-65',j[1],0,j[2]],
+                                    ['66-70',k[1],0,k[2]],
+                                    ['70+',l[1],0,l[2]]
+
+                                ]);
+
+                                var options = {
+                                    vAxis:{
+                                        textPosition: 'none',
+                                        gridlines:{
+                                            color: '#1d2636'
+                                        }
+                                    },
+                                    bar: {
+                                        groupWidth: '8%',
+                                        class:"barClass"
+                                    },
+                                    legend:'none',
+                                    seriesType: 'bars',
+                                    series: {3:{type:'line'}},
+                                    hAxis:{
+                                        textColor:'#f2f2f2'
+                                    },
+                                    backgroundColor:'#1d2636',
+                                    baselineColor:'#f2f2f2',
+                                    colors: ['#2cd797','#1d2636', '#fc4951']
+                                };
+                                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                                chart.draw(data, options);
+                            }
+
+                                sankey();
+
+                    });
+                loadedOnce = true;
+
+            }
+            else return true;
+	};
+        //var stackFormat = function(original){
+        //
+        //    for (i = 0; i < original.length; i++){
+        //        city11Vs16Stack[i].city11 == city11Vs16Stack[i].city16;
+        //    }
+        //};
+
+        var sankey = function(){
+            google.charts.setOnLoadCallback(drawCharts);
+            function drawCharts() {
+                var datas = new google.visualization.DataTable();
+                datas.addColumn('string', 'From');
+                datas.addColumn('string', 'To');
+                datas.addColumn('number', 'Weight');
+                datas.addRows([
+                    [ 	$scope.city11Vs16Stack[0].city11, 	$scope.city11Vs16Stack[0].city16 , 4],
+                    [ 	$scope.city11Vs16Stack[1].city11, 	$scope.city11Vs16Stack[1].city16 , 1],
+                    [ 	$scope.city11Vs16Stack[2].city11, 	$scope.city11Vs16Stack[2].city16 , 4 ],
+                    [ 	$scope.city11Vs16Stack[7].city11, 	$scope.city11Vs16Stack[7].city16 , 2 ],
+                    [ 	$scope.city11Vs16Stack[8].city11, 	$scope.city11Vs16Stack[8].city16 , 3],
+                    [ 	$scope.city11Vs16Stack[9].city11, 	$scope.city11Vs16Stack[9].city16 , 4 ],
+                    [ 	$scope.city11Vs16Stack[10].city11, 	$scope.city11Vs16Stack[10].city16 , 4 ],
+                    [ 	$scope.city11Vs16Stack[11].city11, 	$scope.city11Vs16Stack[11].city16 , 7 ],
+                    [ 	$scope.city11Vs16Stack[12].city11, 	$scope.city11Vs16Stack[12].city16 , 1 ],
+                    [ 	$scope.city11Vs16Stack[13].city11, 	$scope.city11Vs16Stack[13].city16 , 2 ],
+                    [ 	$scope.city11Vs16Stack[14].city11, 	$scope.city11Vs16Stack[14].city16 , 3 ],
+                    [ 	$scope.city11Vs16Stack[15].city11, 	$scope.city11Vs16Stack[15].city16 , 3 ],
+                    [ 	$scope.city11Vs16Stack[16].city11, 	$scope.city11Vs16Stack[16].city16 , 4 ],
+                    [ 	$scope.city11Vs16Stack[17].city11, 	$scope.city11Vs16Stack[17].city16 , 6 ],
+                    [ 	$scope.city11Vs16Stack[18].city11, 	$scope.city11Vs16Stack[18].city16 , 7 ],
+                    [ 	$scope.city11Vs16Stack[19].city11, 	$scope.city11Vs16Stack[19].city16 , 8 ],
+                    [ 	$scope.city11Vs16Stack[20].city11, 	$scope.city11Vs16Stack[20].city16 , 8 ],
+                    [ 	$scope.city11Vs16Stack[21].city11, 	$scope.city11Vs16Stack[21].city16 , 1 ],
+                    [ 	$scope.city11Vs16Stack[3].city11, 	$scope.city11Vs16Stack[3].city16 , 6 ],
+                    [ 	$scope.city11Vs16Stack[4].city11, 	$scope.city11Vs16Stack[4].city16 , 2 ],
+                    [ 	$scope.city11Vs16Stack[5].city11, 	$scope.city11Vs16Stack[5].city16 , 6 ],
+                    [ 	$scope.city11Vs16Stack[6].city11, 	$scope.city11Vs16Stack[6].city16 , 7 ],
+
+                ]);
+
+                // Sets chart options.
+                var colors = ['#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f',
+                    '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
+
+                var optionss = {
+                        width: 850,
+                    sankey: {
+                        node: {
+                            colors: colors
+                        },
+                        link: {
+                            colorMode: 'gradient',
+                            colors: colors
+                        }
+                    }
+                };
+                // Instantiates and draws our chart, passing in some options.
+                var charts = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+                charts.draw(datas, optionss);
+            }
+        };
+
 
         var createMarker = function (info , obj){
 
@@ -283,8 +557,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             //click listener for adding new story
             map = $scope.map;
             $scope.map.addListener('click', function(event) {
-
-                console.log(event.latLng.lat()+" "+event.latLng.lng());
                 userLatitude = event.latLng.lat();
                 userLongitude = event.latLng.lng();
                 placeMarker(event.latLng,map);
@@ -316,7 +588,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         //click listener to go the next story
         $(".story-button").click(function() {
             randomLead = Math.floor(Math.random() * ($scope.markers.length));
-            //console.log(randomLead);
             $scope.rightNavContentStory($scope.markers[randomLead]);
         });
 
@@ -340,23 +611,15 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             $("#cities16").append(citiesList);
         });
 
-        //draw chart example from our CDN
-        //drawChart();
-
-
 			$scope.createMoment = function (file,user,callback){
-                if (angular.isDefined(user) && angular.isDefined(file)) {
+                if (angular.isDefined(user)) {
                     $scope.upload($scope.file,$scope.user);
                 }
-                //momentService.createMoment(user.fn,user.ln,user.age,user.st11,user.st16,user.c11,user.c16,user.r11,user.r16,user.happy,user.success,user.gov,user.pressure,user.renew,user.conc,"lan","lat",function(moment){
-
-
-                //});
+                else console.log("Oh Oh Something Went Wrong");
 
             $scope.userMaster = angular.copy(user);
             console.log($scope.userMaster.fn);
             var name = $scope.userMaster.fn;
-
             window.alert(name+", תודה על השתתפותך נתונך עברו לאישור עורכי האתר");
             closeForm();
         };
@@ -364,7 +627,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         $scope.upload = function (file,user) {
             Upload.upload({
                 url: server + 'map',
-                data: {file: file, user: user},
+                data: {file: file, user: user, lan: userLongitude, lat: userLatitude},
                 headers: {'Content-Type': undefined},
                 method: 'POST'
             }).then(function (resp) {
@@ -377,7 +640,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             });
         };
 
-
         //after filling the form correctly close the form and return to the regular view
         function closeForm(){
             $("#right-nav-form").animate({right: '-1000px'});
@@ -385,7 +647,15 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             $("#graph-nav").animate({bottom: '-22%'});
         }
 
-
+            //$scope.rotatediv = function (){
+            //    $('#sankey_basic').css({
+            //        '-moz-transform':'rotate(90deg)',
+            //        '-webkit-transform':'rotate(90deg)',
+            //        '-o-transform':'rotate(90deg)',
+            //        '-ms-transform':'rotate(90deg)',
+            //        'transform':'rotate(90deg)'
+            //    });
+            //};
 
         //on click on the map a marker for share or add new will added to the map
         //--todo-- the form and the buttoms beside the maker--//
@@ -436,12 +706,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     borderColor: 'transparent',
                     disableAutoPan: true,
                     backgroundClassName: 'bubbleBody'
-                });
-
-                //add info window when hover on maker show pending status
-                var infoWindow = new google.maps.InfoWindow({
-                    //content:'<p class="user-marker-window">fuckkkkkkkkkkkk</p>'
-                    //content: "תוכן ממתין לאישור"
                 });
 
                 google.maps.event.addListener(newMarker,'mouseover',function(){
@@ -502,7 +766,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
 
         function validatePagefleids(){
-            console.log("formPage: "+formPage);
+            console.log("formPage: " + formPage);
             if(formPage==0){
 
                 var name = $("#userName").val();
@@ -608,6 +872,54 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             }
         }
 
+        $scope.changeGraph = function(graphNum){
+            $('#'+ graphNum).css("z-index", 110);
+                if(!$('.' + graphNum).hasClass("active")) {
+                    $('.' + graphNum).addClass("active");
+                    $('#' + graphNum).addClass("active");
+                }
+            if(graphNum == "d"){
+                if($('.e').hasClass("active")) {
+                    $('.e').removeClass("active");
+                    $('#e').removeClass("active");
+
+                }
+                if($('.f').hasClass("active")) {
+                    $('.f').removeClass("active");
+                    $('#f').removeClass("active");
+
+                }
+                $('#e').css("z-index", -10);
+                $('#f').css("z-index", -10);
+            }
+            else if(graphNum == "e"){
+                if($('.d').hasClass("active")) {
+                    $('.d').removeClass("active");
+                    $('#d').removeClass("active");
+
+                }
+                if($('.f').hasClass("active")) {
+                    $('.f').removeClass("active");
+                    $('#f').removeClass("active");
+
+                }
+                $('#d').css("z-index", -10);
+                $('#f').css("z-index", -10);
+            }
+            else{
+                if($('.e').hasClass("active")) {
+                    $('.e').removeClass("active");
+                    $('#e').removeClass("active");
+
+                }
+                if($('.d').hasClass("active")) {
+                    $('.d').removeClass("active");
+                    $('#d').removeClass("active");
+                }
+                $('#e').css("z-index", -10);
+                $('#d').css("z-index", -10);
+            }
+        };
 
         //form next bottom function --TODO-- add validation to the fields
         $("#form-next-botton").click(function(){
@@ -669,6 +981,11 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             else{
                 $(".rent"+year).css( "display", "none" );
             }
+        };
+
+        $scope.shareToFB = function(){
+            $('.share').snsShare('שתף אותי', 'http://j14app.herokuapp.com/');
         }
+
 
     }]);

@@ -71,9 +71,10 @@ ul{
 .toggle-button{
     width: 25px;
     float: right;
-    padding-top: 1%;
+    margin-top: 12px;
     border: none;
     background: none;
+    color: #ffffff;
 }
 
 .toggle-button:focus{
@@ -109,9 +110,9 @@ ul{
     width: 100%;
     margin: 0;
     position: fixed;
+    padding-bottom: 1%;
     bottom: 0;
-//background-color: #f3f1f1;
-    background-color: #ffffff;
+    background-color: #1d2636;
     height: 27.57%;
 }
 
@@ -125,6 +126,7 @@ ul{
     font-size: 20px;
     margin-top: 8px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 #graph-nav{
@@ -667,9 +669,6 @@ ul{
 
 }
 
-
-
-
 .sign{
     z-index:300;
     width:35px;
@@ -784,4 +783,31 @@ span {
     background-color: #1d2636;
     color: #f2f2f2;
 
+}
+
+#chart_div{
+    width: 85%;
+    height: 90%;
+    display: inline-block;
+    margin-right: 10%;
+    margin-top: -2%;
+}
+
+#sankey_basic{
+    width: 85%;
+    height: 90%;
+    display: inline-block;
+    margin-right: 10%;
+    margin-top: -2%;
+}
+
+.barClass{
+    display: none !important;
+}
+.ageAxies{
+    position: absolute;
+    right: 15%;
+    bottom: 8%;
+    z-index: 100;
+    color: #ffffff;
 }
