@@ -18,11 +18,6 @@ mongoose.connection.once('open',function(){
         return usersAction;
     });});
 
-var bringAllUsers = function(){
-
-};
-
-
 exports.getData = function(){
 	return usersAction;
 };

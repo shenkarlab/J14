@@ -1,10 +1,20 @@
+        <div id="video-section">
+
+            <video autoplay poster="" id="bgvid" loop>
+                <source src="../../images/intro.mp4" type="video/webm">
+                <source src="../../images/intro.mp4" type="video/mp4">
+            </video>
+<!--             <div id="vid-logo"></div>
+            <div id="vid-tri"></div> -->
+            <button id="close-intro"></button>
+
+        </div>
 
         <div id="right-nav-story" class="right-nav">
             <div id="close-story"></div>
             <div id="report-form"><label title="דווח"></label></div>
             <div class="protester-image">{{protesterImage}}</div>
-            <div class="share-button" id="share_button"></div>
-
+            <div class="share-button"></div>
             <div class="lead-story">{{userName}}</div>
             <div class="user-info">{{userInfo}}</div>
 
@@ -264,7 +274,7 @@
 
                     <input type='file' name="uploadImage" id="uploadImage" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
                            ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                           ngf-resize="{width: 300, height: 300}" />
+                           ngf-resize="{width: 550, height: 350}" />
 
                     <div id="image_upload_preview"></div>
 
@@ -288,10 +298,9 @@
         </div>
 
         <form id="campSelect" action="#" method="get">
-            <input list="camps" name="camp" placeholder="חפש מאהל ברחבי הארץ">
-            <datalist id="camps">
-                <!-- will be load with all the camps -->
-            </datalist>
+            <select list="camps" id="campsList" name="camp" ng-model="newCamp" ng-change="changeCamp(newCamp)" placeholder="חפש מאהל ברחבי הארץ">
+
+            </select>
         </form>
 
         <div id="map-canvas" data-ng-init="mapData()"></div>
@@ -311,7 +320,7 @@
                     <div id="chart_div" style="width: 90%; height: 90%;"></div>
 
                 </div>
-                <div class="tab-pane" id="e">
+            <div class="fixed-bottom-back" ng-click="toggle()" ></div>
 
                     <div id="sankey_basic" style="width: 90%; height: 90%;"></div>
 

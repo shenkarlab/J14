@@ -11,6 +11,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         $scope.mapObjects = {};
         var map;
         var newMarkerAdded = false;
+        var storyOpen = false;
         var newMarker;
         var randomLead ;
         var tempMarker = {};
@@ -22,6 +23,10 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         var noLeadClicked = true;
         var	userLatitude;
         var	userLongitude;
+        var userCamp = "Rotshilds";
+        var mapLatitude = 32.0635743;
+        var mapLongitude = 34.7773985;
+
         var server = "http://localhost:3000/";
         var loadedOnce = false;
         var chartAge = false;
@@ -77,7 +82,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     //for curreent location
                     // $scope.coords = {latitude:result.coords.latitude, longitude:result.coords.longitude};
                     //default Rotchild blvd
-                    $scope.coords ={latitude:32.0635743,longitude:34.7773985};
+                    $scope.coords ={latitude:mapLatitude,longitude:mapLongitude};
                     initialize($scope.mapStyle.data, $scope.coords);
                     setTimeout(function(){
                         mapObjectsCoor($scope.mapObjects);},1000);
@@ -245,21 +250,25 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     //init the first lead
                     setTimeout(function(){
                         randomLead =	Math.floor(Math.random() * ($scope.markers.length));
-                        $scope.rightNavContentLead($scope.markers[randomLead]);
-                    },"500");
+                        google.maps.event.trigger( $scope.markers[randomLead], 'mouseover' );
+                        setTimeout(function(){
+                            removeBubbleScroll();
+                        },150);
+
+                    },100);
 
                     //intervaling between leadsevery 5 seconds
                     LeadsInterval = setInterval(function(){
                         randomLead =	Math.floor(Math.random() * ($scope.markers.length));
-                        $scope.rightNavContentLead($scope.markers[randomLead]);
-                    },"5000");
+                        google.maps.event.trigger( $scope.markers[randomLead], 'mouseover' );
+                    },5000);
                 }
             }
         }
 
 
-		// a function to get the script asynchronously
-		function getScript(url, success) {
+        // a function to get the script asynchronously
+        function getScript(url, success) {
             if(!loadedOnce){
                 var script = document.createElement('script');
                 script.src = url;
@@ -279,64 +288,64 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             return false;
         }
 
-		$scope.loadGraphs = function() {
+        $scope.loadGraphs = function() {
             if(!loadedOnce){
                 $.getScript(
                     googleChartScript,
                     function() {
-                            google.charts.load('current', {'packages':['corechart','sankey']});
-                            google.charts.setOnLoadCallback(drawVisualization);
-                            function drawVisualization() {
-                                var data = google.visualization.arrayToDataTable([
-                                    ['גיל', 'כן','' ,'לא'],
-                                    ['1-18',a[1],0,a[2]],
-                                    ['19-25',b[1],0,b[2]],
-                                    ['26-30',c[1],0,c[2]],
-                                    ['31-35',d[1],0,d[2]],
-                                    ['36-40',e[1],0,e[2]],
-                                    ['41-45',f[1],0,f[2]],
-                                    ['46-50',g[1],0,g[2]],
-                                    ['51-55',h[1],0,h[2]],
-                                    ['56-60',i[1],0,i[2]],
-                                    ['61-65',j[1],0,j[2]],
-                                    ['66-70',k[1],0,k[2]],
-                                    ['70+',l[1],0,l[2]]
+                        google.charts.load('current', {'packages':['corechart','sankey']});
+                        google.charts.setOnLoadCallback(drawVisualization);
+                        function drawVisualization() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['גיל', 'כן','' ,'לא'],
+                                ['1-18',a[1],0,a[2]],
+                                ['19-25',b[1],0,b[2]],
+                                ['26-30',c[1],0,c[2]],
+                                ['31-35',d[1],0,d[2]],
+                                ['36-40',e[1],0,e[2]],
+                                ['41-45',f[1],0,f[2]],
+                                ['46-50',g[1],0,g[2]],
+                                ['51-55',h[1],0,h[2]],
+                                ['56-60',i[1],0,i[2]],
+                                ['61-65',j[1],0,j[2]],
+                                ['66-70',k[1],0,k[2]],
+                                ['70+',l[1],0,l[2]]
 
-                                ]);
+                            ]);
 
-                                var options = {
-                                    vAxis:{
-                                        textPosition: 'none',
-                                        gridlines:{
-                                            color: '#1d2636'
-                                        }
-                                    },
-                                    bar: {
-                                        groupWidth: '8%',
-                                        class:"barClass"
-                                    },
-                                    legend:'none',
-                                    seriesType: 'bars',
-                                    series: {3:{type:'line'}},
-                                    hAxis:{
-                                        textColor:'#f2f2f2'
-                                    },
-                                    backgroundColor:'#1d2636',
-                                    baselineColor:'#f2f2f2',
-                                    colors: ['#2cd797','#1d2636', '#fc4951']
-                                };
-                                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-                                chart.draw(data, options);
-                            }
+                            var options = {
+                                vAxis:{
+                                    textPosition: 'none',
+                                    gridlines:{
+                                        color: '#1d2636'
+                                    }
+                                },
+                                bar: {
+                                    groupWidth: '8%',
+                                    class:"barClass"
+                                },
+                                legend:'none',
+                                seriesType: 'bars',
+                                series: {3:{type:'line'}},
+                                hAxis:{
+                                    textColor:'#f2f2f2'
+                                },
+                                backgroundColor:'#1d2636',
+                                baselineColor:'#f2f2f2',
+                                colors: ['#2cd797','#1d2636', '#fc4951']
+                            };
+                            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                            chart.draw(data, options);
+                        }
 
-                                sankey();
+                        sankey();
 
                     });
                 loadedOnce = true;
 
             }
             else return true;
-	};
+        };
         //var stackFormat = function(original){
         //
         //    for (i = 0; i < original.length; i++){
@@ -382,7 +391,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
 
                 var optionss = {
-                        width: 850,
+                    width: 850,
                     sankey: {
                         node: {
                             colors: colors
@@ -407,7 +416,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             iterator++;
 
             var markerImage = new google.maps.MarkerImage(
-                '../../images/tag-on-map.svg',
+                path,
                 new google.maps.Size(13,13), //size
                 null, //origin
                 null, //anchor
@@ -429,36 +438,263 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             }
 
             google.maps.event.addListener(marker, 'click', function(){
+                storyOpen = true;
                 $scope.rightNavContentStory(marker);
-                //$("#right-nav-lead").css( "display", "none" );
+
+
+                var profileImage;
+                if(!angular.isDefined(marker.content.userprofileImage)||
+                   marker.content.userprofileImage == "profileImg" ||
+                   marker.content.userprofileImage == "" ){
+                   profileImage = "../../images/pixel.png";
+                }
+                else{
+                    profileImage =marker.content.userprofileImage;
+                }
+
+                infoBubble.setContent(
+                    "<div class='infoBubbleClicked'>"+
+                        "<div class='infoBubblePicClicked'>"+
+                            "<img src='"+profileImage+"'/>"+
+                        "</div>"+
+                    "</div>");
+
+                infoBubble.open($scope.map, marker);
+                removeBubbleScroll();
                 $("#right-nav-story").css( "display", "block" );
                 $("#graph-nav").animate({bottom: '-500px'});
                 $("#right-nav-story").animate({right: '0px'});
                 noLeadClicked = false;
                 clearInterval(LeadsInterval);
+                google.maps.event.trigger( $scope.markers[randomLead], 'mouseout' );
+
             });
 
-            //add info window when hover on maker show user name
-            var infoWindow = new google.maps.InfoWindow({
-                content:'<p class="user-marker-window">'+marker.content.userFname+" "+marker.content.userLname+'</p>'
+            infoBubble = new InfoBubble({
+                maxWidth: 2000,
+                shadowStyle: 0,
+                padding: 0,
+                backgroundColor: 'transparent',
+                borderRadius: 5,
+                arrowSize: 0,
+                borderWidth: 1,
+                borderColor: 'transparent',
+                disableAutoPan: true,
+                backgroundClassName: 'bubbleBody'
             });
+
             google.maps.event.addListener(marker,'mouseover',function(){
-                infoWindow.open($scope.map, marker);
+               if(!storyOpen){
+                removeBubbleScroll();
+                    infoBubble.setContent(
+                        "<div class='infoBubble gm-style-iw'>"+
+                            "<div class='infoBubblePic'>"+
+                                "<img src='"+ /*marker.content.userprofileImage*/  "../../images/pixel.png" + "'/>"+
+                            "</div>"+
+                            "<div class='infoBubbleContent'>"+
+                                "<p class='infoBubbleHeader'>"+
+                                    marker.content.userFname +" "+
+                                    marker.content.userLname +" | "+
+                                    marker.content.age +" | "+
+                                    marker.content.city16 +
+                                "</p>"+
+                                "<p class='infoBubbleStory'>"+
+                                 calculateStoryLengh(marker.content.conclusion)
+                                +"</p>"+
+                           "</div>" +
+                        "</div>");
+                    infoBubble.open($scope.map, marker);
+                    removeBubbleScroll();
+               }
             });
+
             google.maps.event.addListener(marker,'mouseout',function(){
-                infoWindow.close($scope.map, marker);
+                if(noLeadClicked){
+                    infoBubble.close($scope.map, marker);
+                }
             });
 
         };
 
-        //init the lead data to the lead right nav
-        $scope.rightNavContentLead = function(marker){
+        $scope.openGraph = function(graphNumner){
+
+            //==do the graph switches here==//
+
+        }
+
+        //on click on the map a marker for share or add new will added to the map
+        function placeMarker(latLng,map) {
+            if(!newMarkerAdded){
+
+                newMarkerAdded = true;
+
+                clearInterval(LeadsInterval);
+                google.maps.event.trigger( $scope.markers[randomLead], 'mouseout' );
+
+                $("#right-nav-form").css( "display", "block" );
+                $("#right-nav-form").animate({right: '0px'});
+                $("#right-nav-lead").animate({top: '-1500px'});
+                $("#right-nav-story").animate({right: '-1000px'});
+                $("#graph-nav").animate({bottom: '-500px'});
+
+                iterator++;
+                var markerImage = new google.maps.MarkerImage(
+                    '../../images/tag-on-map.svg',
+                    new google.maps.Size(13,13), //size
+                    null, //origin
+                    null, //anchor
+                    new google.maps.Size(13,13) //scale
+                );
+
+                newMarker = new google.maps.Marker({
+                    position: latLng,
+                    animation: google.maps.Animation.DROP, //could be cool option
+                    icon: markerImage,
+                    id: iterator,
+                    map:map
+                });
+
+                infoBubble = new InfoBubble({
+                    shadowStyle: 0,
+                    padding: 0,
+                    backgroundColor: 'transparent',
+                    borderRadius: 5,
+                    arrowSize: 0,
+                    borderWidth: 1,
+                    borderColor: 'transparent',
+                    disableAutoPan: true,
+                    backgroundClassName: 'bubbleBody'
+                });
+
+            if(angular.isDefined(newMarker)){
+                $scope.markers.push(newMarker);
+            }
+
+            google.maps.event.addListener(newMarker, 'click', function(){
+                storyOpen = true;
+                rightNavContentStoryCurrent();
+
+                infoBubble.setContent(
+                    "<div class='infoBubbleClicked'>"+
+                        "<div class='infoBubblePicClicked'>"+
+                            "<img src='"+"../../images/pixel.png"+"'/>"+
+                        "</div>"+
+                    "</div>");
+
+                infoBubble.open($scope.map, newMarker);
+                removeBubbleScroll();
+                $("#right-nav-story").css( "display", "block" );
+                $("#graph-nav").animate({bottom: '-500px'});
+                $("#right-nav-story").animate({right: '0px'});
+                noLeadClicked = false;
+                clearInterval(LeadsInterval);
+                google.maps.event.trigger( $scope.markers[randomLead], 'mouseout' );
+
+            });
+
+            google.maps.event.addListener(newMarker,'mouseover',function(){
+               //console.log(marker);
+               removeBubbleScroll();
+               if(!storyOpen){
+                    infoBubble.setContent(
+                        "<div class='infoBubble'>"+
+                            "<div class='infoBubblePic'>"+
+                                "<img src='"+ /*marker.content.userprofileImage*/ "../../images/pixel.png" + "'/>"+
+                            "</div>"+
+                            "<div class='infoBubbleContent'>"+
+                                "<p class='infoBubbleHeader'>"+
+                                    $scope.user.fn  +" "+
+                                    $scope.user.ln  +" | "+
+                                    $scope.user.age +" | "+
+                                    $scope.user.c16 +
+                                "</p>"+
+                                "<p class='infoBubbleStory'>"
+                                + calculateStoryLengh( $scope.user.conc)
+                                +"</p>"+
+                           "</div>" +
+                        "</div>");
+                   infoBubble.open($scope.map, newMarker);
+                   removeBubbleScroll();
+               }
+            });
+
+
+            google.maps.event.addListener(marker,'mouseout',function(){
+                if(noLeadClicked){
+                    infoBubble.close($scope.map, marker);
+                }
+            });
+
+            //map.setCenter(new google.maps.
+            //   LatLng(marker.getPosition().lat(), marker.getPosition().lng()+1));
+
+            }
+        }
+
+        function calculateStoryLengh(story){
+            if(story.length<100){return story;}
+            var chopedStory = story.substring(0, 100);
+            chopedStory+=" . . .";
+            return chopedStory;
+        }
+
+        //init the story data to the story right nav
+        function rightNavContentStoryCurrent(){
 
             $scope.$apply(function(){
                 if(angular.isDefined(marker)){
 
-                    $scope.leadStory = "\" " + marker.content.userFname +" "+marker.content.userLname + " \"";
-                    $scope.userInfo =   marker.content.age +" | " +marker.content.status16+" | "+marker.content.city16;
+                $scope.userName = $scope.user.fn +" "+$scope.user.ln;
+                var currentStatus;
+                if($scope.user.status16=="devorced"){currentStatus = "גרוש";}
+                else if($scope.user.status16=="single"){currentStatus = "רווק";}
+                else{currentStatus = "נשוי";}
+
+                $scope.userInfo =   $scope.user.age +" | " +currentStatus+" | "+$scope.user.c16;
+                $scope.protestStory =  $scope.user.conc;
+
+                if($scope.user.r11>$scope.user.r16){
+                    $("#icon1").attr( "class", "icon rentUp" );
+                    $("#icon1Desc").attr( "class", "iconDesc green");
+                    $("#icon1Desc").text("משלם פחות על שכר דירה מאז 2011");
+                }
+                else{
+                    $("#icon1").attr( "class", "icon rentDown");
+                    $("#icon1Desc").attr( "class", "iconDesc red");
+                    $("#icon1Desc").text("משלם יותר על שכר דירה מאז 2011");
+                }
+
+                if($scope.user.succes=="yes"){
+                    $("#icon2").attr( "class", "icon payUp");
+                    $("#icon2Desc").attr( "class", "iconDesc green");
+                    $("#icon2Desc").text("מרוויח יותר מאז 2011");
+                }
+                else{
+                    $("#icon2").attr( "class", "icon payDown");
+                    $("#icon2Desc").attr( "class", "iconDesc red");
+                    $("#icon2Desc").text("מרוויח פחות מאז 2011");
+                }
+
+                if($scope.user.renew){
+                    $("#icon4").attr( "class", "icon renew");
+                    $("#icon4Desc").attr( "class", "iconDesc yellow");
+                    $("#icon4Desc").text("חושב שצריך לחדש את המחאה");
+                }
+                else{
+                    $("#icon4").attr( "class", "icon notRenew");
+                    $("#icon4Desc").text("לא חושב שצריך לחדש את המחאה");
+                }
+
+                if($scope.user.happy){
+                    $("#icon3").attr( "class", "icon optimi");
+                    $("#icon3Desc").attr( "class", "iconDesc green");
+                    $("#icon3Desc").text("אופטימי");
+                }
+                else{
+                    $("#icon3").attr( "class", "icon pasimi");
+                    $("#icon3Desc").attr( "class", "iconDesc red");
+                    $("#icon3Desc").text("פאסימי");
+                }
 
                     if(typeof tempMarker["id"] === 'undefined'){
                         marker.setIcon("../../images/tag-on-map.svg");
@@ -532,6 +768,17 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     $("#icon3Desc").text("פאסימי");
                 }
 
+                console.log(marker.content.tentImageLink );
+
+                if(!angular.isDefined(marker.content.tentImageLink)||
+                    marker.content.tentImageLink =="link" ||
+                    marker.content.tentImageLink ==""){
+                    $('#defaultUserImage').css('background-image', 'url(../../images/default.png)');
+                }
+                else{
+                    $('#defaultUserImage').css('background-image', 'url(' + marker.content.tentImageLink + ')');
+                }
+
                 if(typeof tempMarker["id"] === 'undefined'){
                     marker.setIcon("../../images/tag-on-map.svg");
                 }
@@ -561,6 +808,16 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 userLongitude = event.latLng.lng();
                 placeMarker(event.latLng,map);
             });
+            setTimeout(function(){$("#map-canvas").css({"zIndex": -5});},1000);
+
+        }
+
+        function removeBubbleScroll(){
+            $(".infoBubble").each( function(){
+                $(this).parent().css({"overflow":"hidden"});
+                $(this).parent().parent().css({"overflow":"hidden"});
+                $(this).parent().parent().parent().css({"overflow":"hidden"});
+            });
         }
 
         //toggle the bottom nav div
@@ -574,6 +831,12 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             }
         };
 
+        $scope.openGraph = function(graphNumner){
+
+            //==do the graph switches here==//
+
+        }
+
         //click listener to go the the current lead story
         $(".lead-button").click(function() {
             $scope.rightNavContentStory($scope.markers[randomLead]);
@@ -583,22 +846,23 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             $("#graph-nav").animate({bottom: '-500px'});
             noLeadClicked = false;
             clearInterval(LeadsInterval);
+            google.maps.event.trigger( $scope.markers[randomLead], 'mouseout' );
         });
 
-        //click listener to go the next story
-        $(".story-button").click(function() {
-            randomLead = Math.floor(Math.random() * ($scope.markers.length));
-            $scope.rightNavContentStory($scope.markers[randomLead]);
-        });
+        ////click listener to go the next story
+        //$(".story-button").click(function() {
+        //    randomLead = Math.floor(Math.random() * ($scope.markers.length));
+        //    $scope.rightNavContentStory($scope.markers[randomLead]);
+        //});
 
         //loading from json and adding all the camps the the select option on the top
-        var campsList;
-        $http.get('../json/camps.json').then(function(json){
-            for(var i=0 ;i<json.data.camps.length;i++){
-                campsList +="<option value=\""+json.data.camps[i].camp+"\">" ;
-            }
-            $("#camps").append(campsList);
-        });
+        //var campsList;
+        //$http.get('../json/camps.json').then(function(json){
+        //    for(var i=0 ;i<json.data.camps.length;i++){
+        //        campsList +="<option value=\""+json.data.camps[i].camp+"\">" ;
+        //    }
+        //    $("#camps").append(campsList);
+        //});
 
 
         //loading from json and adding all the camps the the select option on the top
@@ -607,9 +871,11 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             for(var i=0 ;i<json.data.cities.length;i++){
                 citiesList +="<option value=\""+json.data.cities[i].name+"\">" ;
             }
-            $("#cities11").append(citiesList);
             $("#cities16").append(citiesList);
+            $("#cities11").append(citiesList);
+
         });
+
 
 			$scope.createMoment = function (file,user,callback){
                 if (angular.isDefined(user)) {
@@ -627,7 +893,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         $scope.upload = function (file,user) {
             Upload.upload({
                 url: server + 'map',
-                data: {file: file, user: user, lan: userLongitude, lat: userLatitude},
+                data: {file: file, user: user},
                 headers: {'Content-Type': undefined},
                 method: 'POST'
             }).then(function (resp) {
@@ -970,6 +1236,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
         //form close votton function, it the user clicked on it the marker temp marker will be removed
         $("#close-story").click(function(){
+            storyOpen = false;
             $("#right-nav-story").animate({right: '-1000px'});
             $("#graph-nav").animate({bottom: '-22%'});
         });
