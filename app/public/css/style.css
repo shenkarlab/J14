@@ -254,11 +254,11 @@ ul{
     background-image: url(../images/default.png);
     width: 100%;
     margin-top: 10px;
-    background-position-y: 30px;
+    /* background-position-y: 30px; */
     border: solid 1px #010101;
     height: 255px;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 
@@ -857,11 +857,11 @@ span {
 }
 
 .infoBubblePic img,.infoBubblePicClicked img{
-    width: 50px;
+    width: 48px;
     padding: 3px;
-    height: 50px;
+    height: 49px;
     float: right;
-    margin-top: 2px;
+    margin-top: 0px;
     background-size: cover;
     border-radius: 50px;
 }

@@ -98,7 +98,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 }
 
                 //intervaling between leads until a lead was clicked by the user
-                if(noLeadClicked){
+                if(!storyOpen){
                     //init the first lead and clean google viewbubbles default
                     //unwanted views
                     setTimeout(function(){
@@ -142,24 +142,42 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 id: iterator
             });
 
+            infoBubble = new InfoBubble({
+                maxWidth: 200,
+                shadowStyle: 0,
+                padding: 0,
+                backgroundColor: 'transparent',
+                borderRadius: 1,
+                arrowSize: 0,
+                borderWidth: 1,
+                borderColor: 'transparent',
+                disableAutoPan: true,
+                hideCloseButton: true,
+                backgroundClassName: 'bubbleBody'
+            });
+
+
             if(angular.isDefined(marker)){
                 $scope.markers.push(marker);
             }
+            
+                var profileImage;
+                console.log(marker.content.userprofileImage);
+                if(!angular.isDefined(marker.content.userprofileImage)||
+                   marker.content.userprofileImage == "profileImg" ||
+                   marker.content.userprofileImage == "link" ){
+                   profileImage = "../../images/pixel.png";
+                }
+                else{
+                    profileImage = marker.content.userprofileImage;
+                }
 
             google.maps.event.addListener(marker, 'click', function(){
                 storyOpen = true;
                 $scope.rightNavContentStory(marker);
 
 
-                var profileImage;
-                if(!angular.isDefined(marker.content.userprofileImage)||
-                   marker.content.userprofileImage == "profileImg" ||
-                   marker.content.userprofileImage == "" ){
-                   profileImage = "../../images/pixel.png";
-                }
-                else{
-                    profileImage =marker.content.userprofileImage;
-                }
+
 
                 infoBubble.setContent(
                     "<div class='infoBubbleClicked'>"+
@@ -179,26 +197,13 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
             });
 
-            infoBubble = new InfoBubble({
-                maxWidth: 2000,
-                shadowStyle: 0,
-                padding: 0,
-                backgroundColor: 'transparent',
-                borderRadius: 5,
-                arrowSize: 0,
-                borderWidth: 1,
-                borderColor: 'transparent',
-                disableAutoPan: true,
-                backgroundClassName: 'bubbleBody'
-            });
-
             google.maps.event.addListener(marker,'mouseover',function(){
                if(!storyOpen){
                 removeBubbleScroll();
                     infoBubble.setContent(
                         "<div class='infoBubble gm-style-iw'>"+
                             "<div class='infoBubblePic'>"+
-                                "<img src='"+ /*marker.content.userprofileImage*/  "../../images/pixel.png" + "'/>"+
+                                "<img src='"+ profileImage + "'/>"+
                             "</div>"+
                             "<div class='infoBubbleContent'>"+
                                 "<p class='infoBubbleHeader'>"+
@@ -218,7 +223,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
             });
                        
             google.maps.event.addListener(marker,'mouseout',function(){
-                if(noLeadClicked){
+                if(!storyOpen){
                     infoBubble.close($scope.map, marker);
                 }
             });
@@ -227,7 +232,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
 
         //on click on the map a marker for share or add new will added to the map
         function placeMarker(latLng,map) {
-            if(!newMarkerAdded){
+            if(!newMarkerAdded && !storyOpen){
 
                 newMarkerAdded = true;
 
@@ -257,12 +262,12 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     map:map
                 });
 
-                infoBubble = new InfoBubble({
+                var infoBubble = new InfoBubble({
                     shadowStyle: 0,
                     padding: 0,
                     backgroundColor: 'transparent',
-                    borderRadius: 5,
                     arrowSize: 0,
+                    borderRadius: 1,
                     borderWidth: 1,
                     borderColor: 'transparent',
                     disableAutoPan: true,
@@ -273,14 +278,26 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                 $scope.markers.push(newMarker);
             }
 
+                var profileImage;
+                
+                if(!angular.isDefined(marker.content.userprofileImage)||
+                   marker.content.userprofileImage == "profileImg" ||
+                   marker.content.userprofileImage == "link" ){
+                   profileImage = "../../images/pixel.png";
+                }
+                else{
+                    profileImage = marker.content.userprofileImage;
+                }
+
             google.maps.event.addListener(newMarker, 'click', function(){
                 storyOpen = true;
                 rightNavContentStoryCurrent();
 
+
                 infoBubble.setContent(
                     "<div class='infoBubbleClicked'>"+
                         "<div class='infoBubblePicClicked'>"+
-                            "<img src='"+"../../images/pixel.png"+"'/>"+
+                            "<img src='"+profileImage+"'/>"+
                         "</div>"+
                     "</div>");
 
@@ -302,7 +319,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     infoBubble.setContent(
                         "<div class='infoBubble'>"+
                             "<div class='infoBubblePic'>"+
-                                "<img src='"+ /*marker.content.userprofileImage*/ "../../images/pixel.png" + "'/>"+
+                                "<img src='"+ profileImage + "'/>"+
                             "</div>"+
                             "<div class='infoBubbleContent'>"+
                                 "<p class='infoBubbleHeader'>"+
@@ -327,9 +344,6 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
                     infoBubble.close($scope.map, marker);
                 }
             });
-
-            //map.setCenter(new google.maps.
-            //   LatLng(marker.getPosition().lat(), marker.getPosition().lng()+1)); 
 
             }
         }
@@ -788,6 +802,7 @@ usersControllers.controller('MapCtrl', ['$scope','$routeParams', '$http','geoloc
         //form close votton function, it the user clicked on it the marker temp marker will be removed
         $("#close-story").click(function(){
             storyOpen = false;
+            google.maps.event.trigger( $scope.markers[randomLead], 'mouseout' );
             $("#right-nav-story").animate({right: '-1000px'});
             $("#graph-nav").animate({bottom: '-22%'});
         });
